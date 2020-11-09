@@ -1,0 +1,8 @@
+config.py
+
+#Environments
+.env
+.venv
+env/
+venv/
+ENV/

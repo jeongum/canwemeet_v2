@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <body>
+    {% if session['logged_in'] %}
+    <p>Oh no Dont show page</p>
+    
+    {% else %}
+    <h2>회원가입 페이지</h2>
+    <form method="POST" action="/register/">
+      {{ csrf_token }}
+      <p>username</p>
+      <input type="text" name="user_name">
+      <br>
+      <p>email</p>
+      <input type="text" name="user_email">
+      <br>
+      <input type="submit" value="회원가입">
+    </form>
+    
+    {% endif %}
+  </body>
+{% endblock %}
