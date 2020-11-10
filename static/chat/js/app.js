@@ -56,7 +56,7 @@ function connect(username) {
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         let data;
-        fetch('/login', {
+        fetch('/enter', {
             method: 'POST',
             body: JSON.stringify({'username': username})
         }).then(res => res.json()).then(_data => {

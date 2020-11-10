@@ -34,8 +34,8 @@ def chat_index():
     return render_template('chat/index.html')
 
 
-@chat_route.route('/chat/login', methods=['POST'])
-def chat_login():
+@chat_route.route('/enter', methods=['POST'])
+def enter():
     username = request.get_json(force=True).get('username')
     if not username:
         abort(401)
