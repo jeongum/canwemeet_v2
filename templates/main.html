@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {{ csrf_token }}
+    {% if session['logged_in'] %}
     <body>
-        메인 페이지
-        <br>
-        <a href="/logout">logout</a>
+        <div class="container">
+            <a href="/logout">logout</a>
+            <div>
+                <a href="">
+                    회의 시작하기
+                </a>
+            </div>
+            <div>
+                <a href="">
+                    지난 회의록 보기
+                </a>
+            </div>
     </body>
+
+    {% else %}
+    {% include './login/login.html' %}
+    {% endif %}
 {% endblock content %}
