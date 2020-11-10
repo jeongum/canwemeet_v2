@@ -11,18 +11,18 @@ login_route = Blueprint('login_route',__name__)
 def home():
     """ Session Control """
     if not session.get('logged_in'):
-        return render_template('login/login.html')
+        return render_template('main.html')
     else:
         if request.method =='POST':
             username = request.form['user_name']
-            return render_template('login/login.html')
-        return render_template('login/index.html')
+            return render_template('main.html')
+        return render_template('main.html')
     
 @login_route.route('/login',methods =['GET','POST'])
 def login():
     """Login Form"""
     if request.method =='GET':
-        return render_template('login/login.html')
+        return render_template('main.html')
     else:
         name = request.form['user_name']
         email = request.form['user_email']
@@ -45,13 +45,11 @@ def register():
         data = user.User(user_name = request.form['user_name'],user_email=request.form['user_email'])
         user.db.session.add(data)
         user.db.session.commit()
-        return render_template('login/login.html')
+        return render_template('main.html')
     return render_template('login/register.html')
 
 @login_route.route('/logout')
 def logout():
     """Logout Form"""
     session['logged_in'] = False
-    return redirect(url_for('home'))
-
-
+    return redirect(url_for('login_route.home'))

@@ -1,11 +1,7 @@
-{% extends "base.html" %}
 {% block content %}
-{% if session['logged_in'] %}
-<p>You're logged in already!</p>
-{% else %}
-<h2> 로그인 페이지</h2>
+
+<h2>로그인 페이지</h2>
 <form method="POST" action="/login">
-  {{ csrf_token }}
   <p>username</p>
   <input type="string" name="user_name" placeholder="Username">
   <br>
@@ -14,5 +10,4 @@
   <br>
   <input type="submit" value="로그인">
 </form>
-{% endif %}
-{% endblock %}
+{% endblock content %}

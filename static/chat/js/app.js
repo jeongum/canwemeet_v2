@@ -1,18 +1,12 @@
 const root = document.getElementById('root');
 const usernameInput = document.getElementById('username');
 const button = document.getElementById('join_leave');
-const shareScreen = document.getElementById('share_screen');
-const toggleChat = document.getElementById('toggle_chat');
 const container = document.getElementById('container');
 const count = document.getElementById('count');
-const chatScroll = document.getElementById('chat-scroll');
-const chatContent = document.getElementById('chat-content');
-const chatInput = document.getElementById('chat-input');
 let connected = false;
 let room;
 let chat;
 let conv;
-let screenTrack;
 
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
@@ -36,7 +30,6 @@ function connectButtonHandler(event) {
         connect(username).then(() => {
             button.innerHTML = 'Leave call';
             button.disabled = false;
-            shareScreen.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
             button.innerHTML = 'Join call';
@@ -47,8 +40,6 @@ function connectButtonHandler(event) {
         disconnect();
         button.innerHTML = 'Join call';
         connected = false;
-        shareScreen.innerHTML = 'Share screen';
-        shareScreen.disabled = true;
     }
 };
 
@@ -70,7 +61,6 @@ function connect(username) {
             room.on('participantDisconnected', participantDisconnected);
             connected = true;
             updateParticipantCount();
-            connectChat(data.token, data.conversation_sid);
             resolve();
         }).catch(e => {
             console.log(e);
@@ -146,32 +136,9 @@ function disconnect() {
     if (root.classList.contains('withChat')) {
         root.classList.remove('withChat');
     }
-    toggleChat.disabled = true;
     connected = false;
     updateParticipantCount();
 };
-
-function shareScreenHandler() {
-    event.preventDefault();
-    if (!screenTrack) {
-        navigator.mediaDevices.getDisplayMedia().then(stream => {
-            screenTrack = new Twilio.Video.LocalVideoTrack(stream.getTracks()[0]);
-            room.localParticipant.publishTrack(screenTrack);
-            screenTrack.mediaStreamTrack.onended = () => { shareScreenHandler() };
-            console.log(screenTrack);
-            shareScreen.innerHTML = 'Stop sharing';
-        }).catch(() => {
-            alert('Could not share the screen.')
-        });
-    }
-    else {
-        room.localParticipant.unpublishTrack(screenTrack);
-        screenTrack.stop();
-        screenTrack = null;
-        shareScreen.innerHTML = 'Share screen';
-    }
-};
-
 function zoomTrack(trackElement) {
     if (!trackElement.classList.contains('trackZoomed')) {
         // zoom in
@@ -209,51 +176,5 @@ function zoomTrack(trackElement) {
     }
 };
 
-function connectChat(token, conversationSid) {
-    return Twilio.Conversations.Client.create(token).then(_chat => {
-        chat = _chat;
-        return chat.getConversationBySid(conversationSid).then((_conv) => {
-            conv = _conv;
-            conv.on('messageAdded', (message) => {
-                addMessageToChat(message.author, message.body);
-            });
-            return conv.getMessages().then((messages) => {
-                for (let i = 0; i < messages.items.length; i++) {
-                    addMessageToChat(messages.items[i].author, messages.items[i].body);
-                }
-                toggleChat.disabled = false;
-            });
-        });
-    }).catch(e => {
-        console.log(e);
-    });
-};
-
-function addMessageToChat(user, message) {
-    chatContent.innerHTML += `<p><b>${user}</b>: ${message}`;
-    chatScroll.scrollTop = chatScroll.scrollHeight;
-}
-
-function toggleChatHandler() {
-    event.preventDefault();
-    if (root.classList.contains('withChat')) {
-        root.classList.remove('withChat');
-    }
-    else {
-        root.classList.add('withChat');
-        chatScroll.scrollTop = chatScroll.scrollHeight;
-    }
-};
-
-function onChatInputKey(ev) {
-    if (ev.keyCode == 13) {
-        conv.sendMessage(chatInput.value);
-        chatInput.value = '';
-    }
-};
-
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
-shareScreen.addEventListener('click', shareScreenHandler);
-toggleChat.addEventListener('click', toggleChatHandler);
-chatInput.addEventListener('keyup', onChatInputKey);
