@@ -1,24 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{ csrf_token }}
-    {% if session['logged_in'] %}
     <body>
-        <div class="container">
-            <a href="/logout">logout</a>
-            <div>
+        {% include 'header.html' %}
+        <main>
+            <section class="menu meeting">
                 <a href="">
                     회의 시작하기
                 </a>
-            </div>
-            <div>
+            </section>
+
+            <section class="menu minute-list">
                 <a href="">
                     지난 회의록 보기
                 </a>
-            </div>
+            </section>
+        </main>
     </body>
-
-    {% else %}
-    {% include './login/login.html' %}
-    {% endif %}
 {% endblock content %}

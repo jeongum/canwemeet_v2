@@ -1,13 +1,19 @@
-{% block content %}
+{% extends 'base.html' %}
 
-<h2>로그인 페이지</h2>
-<form method="POST" action="/login">
-  <p>username</p>
-  <input type="string" name="user_name" placeholder="Username">
-  <br>
-  <p>UserEmail</p>
-  <input type="string" name="user_email" placeholder="UserEmail">
-  <br>
-  <input type="submit" value="로그인">
-</form>
+{% block content %}
+  <body>
+    <main>
+      <section id="logo">
+        로고 이미지
+      </section>
+      <section id="login-form">
+        {{ csrf_token }}
+        버튼 1, 2, 3
+      </section>
+      <section id="phrase">
+        <span class="yellow-bold">세 번의 클릭</span>만으로
+        <span class="yellow-bold">회의를 시작</span>하세요!
+      </section>
+    </main>
+  </body>
 {% endblock content %}

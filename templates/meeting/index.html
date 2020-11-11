@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <body>
+        {% include 'header.html' %}
+        <main>
+            <section id="meeting">
+                {% include 'meeting.html' %}
+            </section>
+
+            <section id="emotion">
+                {% include 'emotion.html' %}
+            </section>
+            
+            <section id="minute">
+                {% include 'minute.html' %}
+            </section>
+        </main>
+    </body>
+{% endblock content %}

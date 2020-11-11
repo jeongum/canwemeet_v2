@@ -1,22 +1,41 @@
 {% extends 'base.html' %}
+
 {% block content %}
   <body>
-    {% if session['logged_in'] %}
-    <p>Oh no Dont show page</p>
-    
-    {% else %}
-    <h2>회원가입 페이지</h2>
-    <form method="POST" action="/register/">
-      {{ csrf_token }}
-      <p>username</p>
-      <input type="text" name="user_name">
-      <br>
-      <p>email</p>
-      <input type="text" name="user_email">
-      <br>
-      <input type="submit" value="회원가입">
-    </form>
-    
-    {% endif %}
+    <main>
+      <section>
+        <h2>당신이 <span class="yellow-bold">누구</span>인지 알려주세요.</h2>
+        <span>곧 회의가 시작됩니다…</span>
+      </section>
+
+      <section id="profile-setup">
+        <div id="profile-photo">
+          프로필 사진 위치
+        </div>
+        <div id="profile-form">
+          <!--여기에 회원가입 폼을 넣어주세요-->
+        </div>
+      </section>
+
+      <section id="privacy-terms">
+        <header>
+          <span><h3>개인정보 이용 약관</h3></span>
+          <span>닫기 버튼</span>
+        </header>
+
+        <article>
+          여기에 약관 내용을 입력해주세요.
+        </article>
+        
+        <footer>
+          <div>
+            네, 동의합니다.
+          </div>
+          <div>
+            취소
+          </div>
+        </footer>
+      </section>
+    </main>
   </body>
 {% endblock %}
