@@ -1,0 +1,27 @@
+    <form>
+        <input type="checkbox" name="with-emotion" value="" />감정과 함께 보기
+        
+        <div id="highlight">
+            <input type="checkbox" name="with-highlight" value="" />하이라이트만 보기
+            <span class="highlight-icon">하이라이트 아이콘</span>
+        </div>
+
+        <div id="search">
+            <span id="search-icon">검색창 아이콘</span>
+            <input type="text" name="search" placeholder="검색어를 입력하세요">
+        </div>
+    </form>
+
+    <div>
+        {% include 'minute/emotion-navigator.html' %}
+
+        <div id="content">
+            <div class="text">
+                [18:00] 회의가 시작되었습니다.
+                <span class="highlight-icon">하이라이트 아이콘</span>
+            </div>
+            <div class="emotion-icon">
+                감정 아이콘
+            </div>
+        </div>
+    </div>
