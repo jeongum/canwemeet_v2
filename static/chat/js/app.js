@@ -3,6 +3,8 @@ const usernameInput = document.getElementById('username');
 const button = document.getElementById('join_leave');
 const container = document.getElementById('container');
 const count = document.getElementById('count');
+const start_stt = document.getElementById('start_stt');
+const end_stt = document.getElementById('end_stt');
 let connected = false;
 let room;
 let chat;
@@ -28,8 +30,8 @@ function connectButtonHandler(event) {
         button.disabled = true;
         button.innerHTML = 'Connecting...';
         connect(username).then(() => {
-            button.innerHTML = 'Leave call';
-            button.disabled = false;
+            start_stt.disabled = false;
+            end_stt.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
             button.innerHTML = 'Join call';
@@ -38,7 +40,8 @@ function connectButtonHandler(event) {
     }
     else {
         disconnect();
-        button.innerHTML = 'Join call';
+        start_stt.disabled = true;
+        end_stt.disabled = true;
         connected = false;
     }
 };
