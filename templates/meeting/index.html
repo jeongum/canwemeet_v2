@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
+{% block scripts %}
+        <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+        <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
+        <script src="{{ url_for('static', filename='chat/js/app.js') }}"></script>
+{% endblock scripts %}
+
 {% block content %}
     <body>
         {% include 'header.html' %}
         <main>
             <section id="meeting">
-                {% include 'meeting.html' %}
+                {% include 'meeting/meeting.html' %}
             </section>
 
             <section id="emotion">
-                {% include 'emotion.html' %}
+                {% include 'meeting/emotion.html' %}
             </section>
             
             <section id="minute">
-                {% include 'minute.html' %}
+                {% include 'meeting/minute.html' %}
             </section>
         </main>
     </body>
