@@ -51,3 +51,7 @@ def logout():
     """Logout Form"""
     session['logged_in'] = False
     return redirect(url_for('login_route.home'))
+
+@login_route.route('/main')
+def main():
+    return render_template('main.html')

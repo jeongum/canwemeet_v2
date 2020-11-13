@@ -3,4 +3,40 @@
 
 body {
     font-family: 'Nanum Gothic', sans-serif;
+    margin: 0 auto;
+}
+
+.login {
+    padding: 70px;
+    background-color: #0080ff;
+    color: #fff;
+    text-align: center;
+}
+
+#logo img {
+    width: 300px;
+}
+
+#login-form {
+    padding: 35px 0px;   
+}
+
+#login-form img {
+    padding: 1px 0px;
+    width: 300px;
+    height: auto;
+}
+
+.yellow-bold {
+    font-weight: bold;
+    color: #ffd862;
+}
+
+#phrase {
+    line-height: 1.5em;
+}
+
+#header {
+    background-color: #0080ff;
+    color: #fff;
 }
