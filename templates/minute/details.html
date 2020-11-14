@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <body>
+        {% include 'header.html' %}
+        <main>
+            <section id="minute-title">
+                <p>
+                    2020/09/01
+                </p>
+                <p>
+                    <h2>
+                        IT팀 회의
+                    </h2>
+                </p>
+            </section>
+
+            <section id="minute-information">
+                <h4>기본정보</h4>
+                {% include 'minute/information.html' %}
+            </section>
+
+            <section id="minute-contents">
+                <h4>전체 내용</h4>
+                {% include 'minute/contents.html' %}
+            </section>
+
+            <section id="canny-analysis">
+                <h4>캐니 분석</h4>
+                {% include 'minute/canny-analysis.html' %}
+            </section>
+
+            <section id="memo">
+                <h4>메모</h4>
+                {% include 'minute/memo.html' %}
+            </section>
+        </main>
+    </body>
+{% endblock content %}

@@ -1,13 +1,41 @@
-{% block content %}
+{% extends 'base.html' %}
 
-<h2>로그인 페이지</h2>
-<form method="POST" action="/login">
-  <p>username</p>
-  <input type="string" name="user_name" placeholder="Username">
-  <br>
-  <p>UserEmail</p>
-  <input type="string" name="user_email" placeholder="UserEmail">
-  <br>
-  <input type="submit" value="로그인">
-</form>
+{% block content %}
+  <body class="blue login">
+    <main >
+      <section id="logo">
+        <img src="{{ url_for('static', filename='images/login/logo.png') }}" alt="캔위미트? 로고">
+      </section>
+
+      <section id="login-form">
+        {{ csrf_token }}
+        <div id="naver">
+          <a href="">
+            <img src="{{ url_for('static', filename='images/login/login-naver.png') }}" alt="네이버 로그인">
+          </a>
+        </div>
+
+        <div id="kakao">
+          <a href="">
+            <img src="{{ url_for('static', filename='images/login/login-kakao.png') }}" alt="카카오 로그인">
+          </a>
+        </div>
+        
+        <div id="google">
+          <a href="">
+            <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인">
+          </a>
+        </div>  
+      </section>
+
+      <section id="phrase">
+        <p>
+          <span class="yellow-bold">세 번의 클릭</span>만으로<br>
+          <span class="yellow-bold">회의를 시작</span>하세요!
+        </p>        
+      </section>
+
+      <a href="/main">메인페이지 링크(테스트용)</a>
+    </main>
+  </body>
 {% endblock content %}

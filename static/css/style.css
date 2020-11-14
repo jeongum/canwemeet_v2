@@ -3,4 +3,137 @@
 
 body {
     font-family: 'Nanum Gothic', sans-serif;
+    margin: 0 auto;
+    background-color: #e5f2ff;
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+.blue {
+    background-color: #0080ff;
+    color: white;
+}
+
+.blue a {
+    color: white;
+}
+
+/* Login & Register Page Settings */
+body.login {
+    text-align: center;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#logo img {
+    width: 300px;
+}
+
+#login-form {
+    margin-top: 20px;
+}
+
+#login-form img {
+    padding: 1px 0px;
+    width: 300px;
+    height: auto;
+}
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+#phrase {
+    line-height: 1.5em;
+}
+
+/* Header Page Settings */
+#header {
+    background-color: #0080ff;
+    color: white;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header #logo-header {
+    flex-basis: 20%;
+}
+
+#header #logo-header img {
+    margin: 0px 20px;
+    width: 150px;
+    vertical-align: middle;
+}
+
+#header #profile {
+    flex-basis: 80%;
+    text-align: right;
+}
+
+#header #profile img {
+    margin-right: 5px;
+    width: 36px;
+    vertical-align: middle;
+}
+
+#header #profile #profile-info {
+    margin: 0px 20px;
+    height: 100%;
+}
+#header #profile #profile-menu {
+    display: none;
+}
+
+/* Main Page Settings */
+.main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#main-menu {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-menu section {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.menu {
+    margin: 40px;
+    width: 100%;
+    height: 100%;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: white;
+    text-align: center;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 24px;
+}
+
+.menu img {
+    width: 100px;
+    max-width: 100%;
 }
