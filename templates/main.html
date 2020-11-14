@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <body>
+    <body class="main">
         {% include 'header.html' %}
-        <main>
-            <section class="menu meeting">
-                <a href="/meeting">
-                    회의 시작하기
-                </a>
-            </section>
 
-            <section class="menu minute-list">
-                <a href="/minute">
-                    지난 회의록 보기
-                </a>
+        <main id="main-menu">
+            <section>
+                <article class="menu meeting">
+                    <img src="{{ url_for('static', filename='images/main/icon-meeting.png') }}">
+                    <a href="/meeting">
+                        <h1>회의 시작하기</h1>
+                    </a>
+                    <h3>이미 회의룸이 존재하신가요?</h3>
+                </article>
+
+                <article class="menu minute-list">
+                    <a href="/minute">
+                        <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
+                        <h1>지난 회의록 보기</h1>
+                    </a>
+                </article>
             </section>
         </main>
     </body>

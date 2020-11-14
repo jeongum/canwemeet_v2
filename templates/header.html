@@ -1,11 +1,18 @@
     <header id="header">
-        <div id="logo">
-            <img src="{{ url_for('static', filename='images/main/logo.png') }}" alt="로고">
+        <div id="logo-header">
+            <a href="/main">
+                <img src="{{ url_for('static', filename='images/main/logo-header.png') }}" alt="로고">
+            </a>
         </div>
+
         <div id="profile">
-            (이름)님, 반갑습니다!
+            <div id="profile-info">
+                <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
+                (이름)
+            </div>
+            <div id="profile-menu">
+                <a href="/logout">로그아웃</a>
+            </div>
         </div>
-        <div id="menu">
-            <a href="/logout">로그아웃</a>
-        </div>
+        
     </header>
