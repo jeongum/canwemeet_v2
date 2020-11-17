@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <body>
+    <body class="main">
         {% include 'header.html' %}
+
         <main>
-            <section>
-                <p>총 n개의 회의록이 있습니다.</p>
+            <section id="minute-list">
+                <p>총 <span class="blue-bold">n</span>개의 회의록이 있습니다.</p>
 
                 <table>
                     <thead>

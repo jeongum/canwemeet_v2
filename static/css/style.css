@@ -1,9 +1,11 @@
 /* Import Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
 
+
+/* Basic Settings */
 body {
-    font-family: 'Nanum Gothic', sans-serif;
     margin: 0 auto;
+    font-family: 'Nanum Gothic', sans-serif;
     background-color: #e5f2ff;
 }
 
@@ -12,6 +14,12 @@ a {
     color: #242424;
 }
 
+ul {
+    list-style: none;
+}
+
+
+/* Font Colors & Weight Settings */
 .blue {
     background-color: #0080ff;
     color: white;
@@ -20,6 +28,17 @@ a {
 .blue a {
     color: white;
 }
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+.blue-bold {
+    color: #0080ff;
+    font-weight: bold;
+}
+
 
 /* Login & Register Page Settings */
 body.login {
@@ -45,14 +64,10 @@ body.login {
     height: auto;
 }
 
-.yellow-bold {
-    color: #ffd862;
-    font-weight: bold;
-}
-
 #phrase {
     line-height: 1.5em;
 }
+
 
 /* Header Page Settings */
 #header {
@@ -66,13 +81,18 @@ body.login {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
 }
 
+#header a {
+    color: white;
+}
+
 #header #logo-header {
     flex-basis: 20%;
 }
 
 #header #logo-header img {
-    margin: 0px 20px;
-    width: 150px;
+    margin: 0px 30px;
+    width: 140px;
+    height: auto;
     vertical-align: middle;
 }
 
@@ -82,18 +102,42 @@ body.login {
 }
 
 #header #profile img {
-    margin-right: 5px;
-    width: 36px;
+    margin-right: 10px;
+    width: 30px;
     vertical-align: middle;
 }
 
 #header #profile #profile-info {
-    margin: 0px 20px;
+    margin: 0px 30px;
     height: 100%;
 }
-#header #profile #profile-menu {
+
+#header #profile-info #profile-menu {
     display: none;
+    width: 70px;
+    height: 20px;
+
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
 }
+
+#header #profile-info:hover #profile-menu
+{
+    padding: 20px 30px;
+
+    display: block;
+    position: absolute;
+    top: 60x;
+    right: 0px;
+
+    background-color: #0080ff;
+    text-align: right;
+}
+
+#header #profile-info #profile-menu a:hover {
+    color: #ffd862;
+}
+
 
 /* Main Page Settings */
 .main {
@@ -103,7 +147,7 @@ body.login {
     flex-direction: column;
 }
 
-#main-menu {
+.main main {
     flex-grow: 1;
 
     display: flex;
@@ -111,7 +155,7 @@ body.login {
     align-items: center;
 }
 
-#main-menu section {
+.main main section {
     width: 80%;
     height: 80%;
 
@@ -120,20 +164,96 @@ body.login {
     align-items: center;    
 }
 
+
+/* Main Menu Page Settings */
 .menu {
     margin: 40px;
     width: 100%;
     height: 100%;
 
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: white;
     text-align: center;
+    letter-spacing: -1px;
 
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
 }
 
+.menu:hover {
+    background-color: #F4F4F4;
+}
+
+
 .menu img {
-    width: 100px;
+    width: 150px;
     max-width: 100%;
+}
+
+.menu h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 2.1em;
+
+    margin-bottom: 0.5em;
+}
+
+.menu h3 {
+    color: #0080ff;
+    text-decoration: underline;
+
+    margin-top: 0px;
+}
+
+
+/* Minute Page Settings - List */
+#minute-list {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+}
+
+#minute-list p {
+    padding: 10px 15px;
+    width: 95%;
+}
+
+#minute-list table {
+    width: 90%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table th, table td {
+    padding: 12px 0px;
+}
+
+table th {
+    border-bottom: 1px solid #0080ff;
+}
+
+table th:nth-child(1) {
+    width: 60px;
+}
+
+table th:nth-child(3) {
+    width: 200px;
+}
+
+table th:nth-child(even) {
+    width: 120px;
+}
+
+table td {
+    border-bottom: 1px solid lightgray;
+}
+
+table a:hover {
+    text-decoration: underline;
 }
