@@ -6,13 +6,16 @@
         </div>
 
         <div id="profile">
-            <div id="profile-info">
-                <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
-                (이름)
-            </div>
-            <div id="profile-menu">
-                <a href="/logout">로그아웃</a>
-            </div>
+            <ul>
+                <li id="profile-info">
+                    <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
+                    (이름)
+                    <ul>
+                        <li id="profile-menu">
+                            <a href="/logout">로그아웃</a>
+                        </li>
+                    </ul>
+                </li>                
+            </ul>
         </div>
-        
     </header>
