@@ -122,87 +122,89 @@ class ResumableMicrophoneStream:
         now = datetime.datetime.now()
         return now.strftime('%A, %d %B %Y %H:%M:%S')
 
-def listen_print_loop(request, responses, stream):
+class SpeechToText:
     global EXIT_FLAG
-    for response in responses:
-        if stream.get_current_time_to_ms() - stream.start_time > stream.streaming_limit:
-            stream.start_time = stream.get_current_time_to_ms()
-            break
-        if not response.results:
-            continue
-
-        result = response.results[0]
-        if not result.alternatives:
-            continue
-
-        transcript = result.alternatives[0].transcript
-        result_seconds = 0
-
-        if result.result_end_time.seconds:
-            result_seconds = result.result_end_time.seconds
-
-        stream.result_end_time = int((result_seconds * 1000) + (result_seconds / 1000000))
-        # return and store at the end of the speech 
-        if EXIT_FLAG:
-            break 
-        else:
-            if result.is_final:
-                current_time = stream.get_current_time_to_str()
-                sys.stdout.write(current_time + ": " + transcript + "\n")
-                stream.is_final_end_time = stream.result_end_time
-                stream.last_transcript_was_final = True
-            else:
-                stream.last_transcript_was_final = False
-
-@stt_route.route('/stt', methods =['POST'])
-def speechtotext():
-    global EXIT_FLAG
-    if 'start_stt' in request.form:
-        EXIT_FLAG = not(EXIT_FLAG)
-        client = speech.SpeechClient()
+    def __init__(self):
         config = speech.RecognitionConfig(
             encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
             sample_rate_hertz=16000,
             language_code="ko-KR",
-            max_alternatives=1,
+            # max_alternatives=1,
             # audio_channel_count=2,    # The number of channels 
             # enable_separate_recognition_per_channel=True # audio_channel_count > 1 to get each channel recognized separately.
         )
-        streaming_config = speech.StreamingRecognitionConfig(
+        self.streaming_config = speech.StreamingRecognitionConfig(
             config=config, interim_results=True
         )
+
+    def run(self):
+        client = speech.SpeechClient()
         mic_manager = ResumableMicrophoneStream()
         # start STT 
         sys.stdout.write("==start stt==!\n")
         with mic_manager as stream:
-            while not stream.closed:
+            stream.audio_input = []
+            audio_generator = stream.generator()
+            requests = (
+                speech.StreamingRecognizeRequest(audio_content=content)
+                for content in audio_generator
+            )
+            responses = client.streaming_recognize(
+                requests=requests, config=self.streaming_config
+            )
+            self.listen_print_loop(request, responses, stream)
+            if EXIT_FLAG:
+                return 
+
+            if stream.result_end_time > 0:
+                stream.final_request_end_time = stream.is_final_end_time
+                stream.result_end_time = 0
+                stream.last_audio_input = []
+                stream.last_audio_input = stream.audio_input
                 stream.audio_input = []
-                audio_generator = stream.generator()
-                requests = (
-                    speech.StreamingRecognizeRequest(audio_content=content)
-                    for content in audio_generator
-                )
-        
-                responses = client.streaming_recognize(
-                    requests=requests, config=streaming_config
-                )
-                # Now, put the transcription responses to use.
-                listen_print_loop(request, responses, stream)
+                stream.restart_counter = stream.restart_counter + 1
 
-                if EXIT_FLAG:
-                    break
+            if not stream.last_transcript_was_final:
+                sys.stdout.write("\n")
 
-                if stream.result_end_time > 0:
-                    stream.final_request_end_time = stream.is_final_end_time
-                    stream.result_end_time = 0
-                    stream.last_audio_input = []
-                    stream.last_audio_input = stream.audio_input
-                    stream.audio_input = []
-                    stream.restart_counter = stream.restart_counter + 1
+    def listen_print_loop(self, request, responses, stream):
+        for response in responses:
+            if stream.get_current_time_to_ms() - stream.start_time > stream.streaming_limit:
+                stream.start_time = stream.get_current_time_to_ms()
+                break
+            if not response.results:
+                continue
 
-                if not stream.last_transcript_was_final:
-                    sys.stdout.write("\n")
+            result = response.results[0]
+            if not result.alternatives:
+                continue
 
+            transcript = result.alternatives[0].transcript
+            result_seconds = 0
+
+            if result.result_end_time.seconds:
+                result_seconds = result.result_end_time.seconds
+
+            stream.result_end_time = int((result_seconds * 1000) + (result_seconds / 1000000))
+            # return and store at the end of the speech 
+            if EXIT_FLAG:
+                break 
+            else:
+                if result.is_final:
+                    current_time = stream.get_current_time_to_str()
+                    sys.stdout.write(current_time + ": " + transcript + "\n")
+                    stream.is_final_end_time = stream.result_end_time
+                    stream.last_transcript_was_final = True
+                else:
+                    stream.last_transcript_was_final = False
+
+@stt_route.route('/stt', methods =['POST'])
+def transcript():
+    global EXIT_FLAG
+    if 'start_stt' in request.form:
+        EXIT_FLAG = not(EXIT_FLAG)
+        stt = SpeechToText()
+        stt.run()
     elif 'end_stt' in request.form:
         sys.stdout.write("==end stt!==\n")
         EXIT_FLAG = not(EXIT_FLAG)
