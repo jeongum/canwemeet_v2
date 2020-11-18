@@ -1,14 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chat/css/style.css') }}">
 
 <body>
-    <h1>Flask & Twilio Video Conference</h1>
-    <form>
-        <label for="name">Room: </label>
-        <input type="text" name="name" id="name">
-        <label for="username">Name: </label>
-        <input type="text" name="username" id="username">
-        <button id="join_leave">Join call</button>
-    </form>
     <p id="count">Disconnected.</p>
     <form action="/stt" method="POST">
         <button type="submit" id="start_stt" name="start_stt" disabled>회의 시작</button>
@@ -19,5 +11,26 @@
             <div id="local" class="participant"><div></div><div class="label">Me</div></div>
             <!-- more participants will be added dynamically here -->
         </div>
-        {% include 'meeting/scripts.html' %}
+        
 </body>
+
+<div class="modal fade" id="roomnameInputModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form>
+                <div class="modal-body">
+                    <label for="roomname">회의 이름을 입력하세요 </label>
+                    <input type="text" name="roomname" id="roomname">
+                    <label for="username">이름을 입력하세요(로그인 기능완료 후 삭제 예정) </label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                    <button id="join_leave"><a href = "/meeting">회의 입장</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'meeting/scripts.html' %}
