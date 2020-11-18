@@ -9,10 +9,10 @@
 
       <section id="login-form">
         {{ csrf_token }}
-        <div id="naver">
-          <a href="">
+        <div id="naverIdLogin">
+          
             <img src="{{ url_for('static', filename='images/login/login-naver.png') }}" alt="네이버 로그인">
-          </a>
+         
         </div>
 
         <div id="kakao">
@@ -37,5 +37,23 @@
 
       <a href="/main">메인페이지 링크(테스트용)</a>
     </main>
+    <!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "wME5VHjSq26zKXZYLowc",
+			callbackUrl: "http://localhost:5000/naver",
+			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+            //loginButton: {color: "white", type: 2, height: 30} //흰색 작은배너형 높이 30px
+           // loginButton: {color: "green", type: 3, height: 40} //녹색 큰배너형 높이 40px 
+        }
+	);
+	
+	/* 설정정보를 초기화하고 연동을 준비 */
+	naverLogin.init();
+       
+</script>
   </body>
 {% endblock content %}
+

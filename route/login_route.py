@@ -55,3 +55,7 @@ def logout():
 @login_route.route('/main')
 def main():
     return render_template('main.html')
+
+@login_route.route('/naver')
+def naver():
+    return render_template('login/naver.html')
