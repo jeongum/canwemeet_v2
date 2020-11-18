@@ -1,5 +1,6 @@
 const root = document.getElementById('root');
 const usernameInput = document.getElementById('username');
+const roomnameInput = document.getElementById('roomname');
 const button = document.getElementById('join_leave');
 const container = document.getElementById('container');
 const count = document.getElementById('count');
@@ -23,15 +24,17 @@ function connectButtonHandler(event) {
     event.preventDefault();
     if (!connected) {
         let username = usernameInput.value;
+        let roomname = roomnameInput.value;
         if (!username) {
             alert('Enter your name before connecting');
             return;
         }
         button.disabled = true;
         button.innerHTML = 'Connecting...';
-        connect(username).then(() => {
+        connect(username, roomname).then(() => {
             start_stt.disabled = false;
             end_stt.disabled = false;
+            $('#roomnameInputModal').modal("hide");
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
             button.innerHTML = 'Join call';
@@ -46,13 +49,13 @@ function connectButtonHandler(event) {
     }
 };
 
-function connect(username) {
+function connect(username, roomname) {
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         let data;
         fetch('/enter', {
             method: 'POST',
-            body: JSON.stringify({'username': username})
+            body: JSON.stringify({'username': username,'roomname': roomname})
         }).then(res => res.json()).then(_data => {
             // join video call
             data = _data;
