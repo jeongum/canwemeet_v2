@@ -5,6 +5,7 @@
 /* Basic Settings */
 body {
     margin: 0 auto;
+    color: #242424;
     font-family: 'Nanum Gothic', sans-serif;
     background-color: #e5f2ff;
 }
@@ -107,8 +108,12 @@ body.login {
     vertical-align: middle;
 }
 
+#header #profile ul {
+    padding: 0px;
+}
+
 #header #profile #profile-info {
-    margin: 0px 30px;
+    margin-right: 30px;
     height: 100%;
 }
 
@@ -256,4 +261,88 @@ table td {
 
 table a:hover {
     text-decoration: underline;
+}
+
+/* Minute Page Settings - Detail */
+.main #minute-details {
+    flex-direction: column;
+}
+
+.main main section {
+    align-items: flex-start;
+}
+
+#minute-title {
+    padding: 5px 10px 0px 10px;
+    flex-basis: 10%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#minute-title p, #minute-title h2, #minute-details h4 {
+    margin: 0px;
+}
+
+#minute-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#minute-container ul {
+    margin: 0px;
+    padding: 0px;
+
+    justify-content: flex-start;
+
+    width: 100%;
+    height: auto;
+
+    z-index: 2;
+}
+
+#minute-container li {
+    margin-right: 20px;
+    padding: 10px;
+
+    display: inline-block;
+    width: 100px;
+
+    text-align: center;
+    border-radius: 5px 5px 0px 0px;
+
+    background-color: #0080ff;
+    color: white;
+}
+
+#minute-container li:hover {
+    cursor: pointer;
+
+    color: #242424;
+    background-color: #B7DBFF;
+}
+
+#minute-container li.current {
+    color: #242424;
+    background-color: #B7DBFF;
+}
+
+#minute-container .tab-content {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: center;
+    background-color: #B7DBFF;
+    border-radius: 0px 5px 5px 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+
+    display: none;
+    z-index: 1;
+}
+
+#minute-container .tab-content.current {
+    display: flex;
 }
