@@ -2,8 +2,12 @@
 
 {% block content %}
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>       
-  <body class="blue login">
-    <main >
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com">
+
+<body class="blue login">
+    <main>
       <section id="logo">
         <img src="{{ url_for('static', filename='images/login/logo.png') }}" alt="캔위미트? 로고">
       </section>
@@ -11,19 +15,18 @@
       <section id="login-form">
         {{ csrf_token }}
         <div id="naverIdLogin">
-          
             <img src="{{ url_for('static', filename='images/login/login-naver.png') }}" alt="네이버 로그인">
-         
         </div>
 
         <div id="kakao">
-          <a href="">
+          <a href="https://kauth.kakao.com/oauth/authorize?client_id=db3901148da54e8931540503043c6259&redirect_uri=http://localhost:5000/oauth&response_type=code&scope=talk_message">
             <img src="{{ url_for('static', filename='images/login/login-kakao.png') }}" alt="카카오 로그인">
           </a>
         </div>
         
         <div id="google">
           <a href="">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
             <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인">
           </a>
         </div>  
@@ -54,6 +57,14 @@
 	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
        
+  function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  //location.href="main";
+}
 </script>
   </body>
 {% endblock content %}
