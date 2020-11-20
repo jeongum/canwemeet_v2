@@ -283,7 +283,7 @@ table a:hover {
 }
 
 #minute-title {
-    padding: 30px 10px 0px 10px;
+    padding: 35px 10px 0px 10px;
     flex-basis: 10%;
 
     display: flex;
@@ -358,6 +358,7 @@ table a:hover {
     width: 80%;
     padding-top: 70px;
 }
+
 
 /* Minute Page Settings - Minute Information */
 #minute-container #minute-information {
@@ -481,7 +482,7 @@ table a:hover {
 }
 
 #minute-information #second #total-meeting-time div {
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 }
 
 #minute-information #second #start-time {
@@ -490,6 +491,48 @@ table a:hover {
 
 #minute-information #second .time span {
     padding-left: 3px;
+}
+
+
+/* Emotion Settings */
+.anger {
+    background-color: #ffb2b2;
+}
+
+.happiness {
+    background-color: #ffedae;
+}
+
+.neutral {
+    background-color: #d9ead3;
+}
+
+.sadness {
+    background-color: #9fc5e8;
+}
+
+
+/* Minute Emotion Navigator Settings */
+#emotion-navigator {
+    display: flex;
+}
+#emotion-navigator .circle {
+    margin-right: 5px;
+
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+}
+
+#emotion-navigator img {
+    margin-left: 5px;
+    width: 1.2em;
+}
+
+#emotion-navigator div {
+    width: 150px;
+    display: flex;
+    align-items: center;
 }
 
 /* Minute Page Settings - Memo */
