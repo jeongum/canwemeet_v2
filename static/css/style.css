@@ -49,6 +49,10 @@ ul {
 body.login {
     text-align: center;
     height: 100vh;
+}
+
+.login main {
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -73,6 +77,77 @@ body.login {
     line-height: 1.5em;
 }
 
+/* Register Page Settings */
+#profile-setup {
+    height: 55%;
+}
+
+#profile-form {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#profile-image {
+    margin: 9px 0px;
+    width: 140px;
+    height: 140px;
+
+    cursor: pointer;
+}
+
+#profile-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#profile-image:hover {
+    opacity: 0.8;
+}
+
+#profile-form input, button {
+    padding: 10px 16px;
+
+    width: 240px;
+    box-sizing: border-box;
+
+    border: 0px;
+    border-radius: 5px;
+
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+#profile-form input[type=email] {
+    background-color: #99ccff;
+}
+
+#profile-form input[type=file] {
+    display: none;
+}
+
+#profile-form input:focus {
+    outline: none;
+}
+
+#profile-form button {
+    color: white;
+    border: white 2px solid;
+    background-color: #0080ff;
+}
+
+#profile-form button:hover {
+    color: #0080ff;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+#privacy-terms {
+    display: none;
+}
 
 /* Header Page Settings */
 #header {
