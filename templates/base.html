@@ -7,12 +7,16 @@
 
         {% block meta %}
         <meta charset="utf-8">
+        <!-- 
+        // ngrok에서 https 실행오류 뜰 때 사용하세요
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+        -->
         {% endblock meta %}
 
         {% block css %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+        <!--
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
         {% endblock css %}
 
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
