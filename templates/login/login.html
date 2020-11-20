@@ -1,11 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>       
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com">
+<style>
+  .n{
+    color: transparent;
+    background-color: transparent;
+    border: 0;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<script>  
 
+function checkLoginStatus(){
+  var nameTxt = document.querySelector('#name');
+  var loginBtn = document.querySelector('#loginBtn');
+  if(gauth.isSignedIn.get()){
+    console.log('logined');
+    loginBtn.value = 'logout';
+    var profile = gauth.currentUser.get().getBasicProfile();
+  console.log(profile.getName());
+  console.log(profile.getId());
+  console.log(profile.getEmail());
+  setTimeout(function() {
+    // 값이 콘솔에 찍히는지 확인하기 위해 딜레이 넣음
+    location.href="main";
+}, 3000);
+  }
+}
+  function init() {
+  gapi.load('auth2', function() {
+    console.log('^ㅡ^auth2');
+    window.gauth = gapi.auth2.init({
+        client_id:'646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com'
+    })
+    gauth.then(function(){
+      console.log('ㅡ_ㅡgoogleAuth success');     
+      checkLoginStatus();
+    }, function(){
+      console.log('googleAuth fail');
+    });
+  });
+  }       
+
+</script>
 <body class="blue login">
     <main>
       <section id="logo">
@@ -24,11 +61,15 @@
           </a>
         </div>
         
-        <div id="google">
-          <a href="">
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인">
-          </a>
+        <div id="google">          
+            <button type="button" id="loginBtn" value="login" class="n" onclick="
+            if(this.value == 'login'){
+              gauth.signIn().then(function(){
+              console.log('gauth.signIn()');
+              checkLoginStatus();
+            });
+            }">
+            <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인"></button>
         </div>  
       </section>
 
@@ -41,31 +82,7 @@
 
       <a href="/main">메인페이지 링크(테스트용)</a>
     </main>
-    <!-- 네이버아디디로로그인 초기화 Script -->
-<script type="text/javascript">
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "wME5VHjSq26zKXZYLowc",
-			callbackUrl: "http://localhost:5000/naver",
-			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
-            //loginButton: {color: "white", type: 2, height: 30} //흰색 작은배너형 높이 30px
-           // loginButton: {color: "green", type: 3, height: 40} //녹색 큰배너형 높이 40px 
-        }
-	);
-	
-	/* 설정정보를 초기화하고 연동을 준비 */
-	naverLogin.init();
-       
-  function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  //location.href="main";
-}
-</script>
-  </body>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+</body>
 {% endblock content %}
 
