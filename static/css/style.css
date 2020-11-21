@@ -120,16 +120,13 @@ body.login {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-#profile-form input[type=email] {
-    background-color: #99ccff;
-}
-
 #profile-form input[type=file] {
     display: none;
 }
 
 #profile-form input:focus {
     outline: none;
+    background-color: #99ccff;
 }
 
 #profile-form button {
