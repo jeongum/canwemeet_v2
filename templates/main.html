@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <body class="main">
         {% include 'header.html' %}
@@ -13,7 +12,6 @@
                     </a>
                     <h3>이미 회의룸이 존재하시나요?</h3>
                 </article>
-
                 <article class="menu minute-list">
                     <a href="/minute">
                         <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
@@ -22,5 +20,7 @@
                 </article>
             </section>
         </main>
+        
     </body>
+    
 {% endblock content %}

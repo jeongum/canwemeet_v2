@@ -7,6 +7,12 @@
 
         {% block meta %}
         <meta charset="utf-8">
+        <!-- 
+        ngrok으로 실행할 때
+        "This request has been blocked; the content must be served over HTTPS."
+        오류가 뜨면 사용하세요
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+        -->
         {% endblock meta %}
 
         {% block css %}
@@ -17,6 +23,8 @@
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 
         {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         {% endblock scripts %}
     </head>
         {% block content %}

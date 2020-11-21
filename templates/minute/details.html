@@ -1,38 +1,54 @@
 {% extends 'base.html' %}
 
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+{% endblock scripts %}
+
 {% block content %}
-    <body>
+    <body class="main">
         {% include 'header.html' %}
-        <main>
+
+        <main id="minute-details">
             <section id="minute-title">
-                <p>
-                    2020/09/01
-                </p>
-                <p>
-                    <h2>
-                        IT팀 회의
-                    </h2>
-                </p>
+                <p>2020/09/01</p>
+                <h2>IT팀 회의</h2>
             </section>
 
-            <section id="minute-information">
-                <h4>기본정보</h4>
-                {% include 'minute/information.html' %}
-            </section>
+            <section id="minute-container">
+                <ul>
+                    <li class="tab-menu current" data-tab="minute-information">
+                        <h4>기본정보</h4>
+                    </li>
 
-            <section id="minute-contents">
-                <h4>전체 내용</h4>
-                {% include 'minute/contents.html' %}
-            </section>
+                    <li class="tab-menu" data-tab="minute-contents">
+                        <h4>전체 내용</h4>
+                    </li>
+                    
+                    <li class="tab-menu" data-tab="canny-analysis">
+                        <h4>캐니 분석</h4>
+                    </li>
 
-            <section id="canny-analysis">
-                <h4>캐니 분석</h4>
-                {% include 'minute/canny-analysis.html' %}
-            </section>
-
-            <section id="memo">
-                <h4>메모</h4>
-                {% include 'minute/memo.html' %}
+                    <li class="tab-menu" data-tab="memo">
+                        <h4>메모</h4>
+                    </li>
+                </ul>
+    
+                <section id="minute-information" class="tab-content current">
+                    {% include 'minute/information.html' %}
+                </section>
+    
+                <section id="minute-contents" class="tab-content">
+                    {% include 'minute/contents.html' %}
+                </section>
+    
+                <section id="canny-analysis" class="tab-content">
+                    {% include 'minute/canny-analysis.html' %}
+                </section>
+    
+                <section id="memo" class="tab-content">
+                    {% include 'minute/memo.html' %}
+                </section>
             </section>
         </main>
     </body>

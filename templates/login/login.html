@@ -2,10 +2,14 @@
 
 {% block content %}
 <style>
-  .n{
+  .c1{
     color: transparent;
     background-color: transparent;
     border: 0;
+    padding: 0;
+    margin: 0;
+    height:10px; 
+    width:300px;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
@@ -18,13 +22,12 @@ function checkLoginStatus(){
     console.log('logined');
     loginBtn.value = 'logout';
     var profile = gauth.currentUser.get().getBasicProfile();
-  console.log(profile.getName());
-  console.log(profile.getId());
-  console.log(profile.getEmail());
-  setTimeout(function() {
-    // 값이 콘솔에 찍히는지 확인하기 위해 딜레이 넣음
-    location.href="main";
-}, 3000);
+    var user_name = profile.getName();
+    var user_email = profile.getEmail();
+    console.log(user_name);
+    console.log(user_email);
+    gname.value = user_name;
+    gemail.value = user_email;
   }
 }
   function init() {
@@ -40,7 +43,7 @@ function checkLoginStatus(){
       console.log('googleAuth fail');
     });
   });
-  }       
+  }    
 
 </script>
 <body class="blue login">
@@ -61,16 +64,22 @@ function checkLoginStatus(){
           </a>
         </div>
         
-        <div id="google">          
-            <button type="button" id="loginBtn" value="login" class="n" onclick="
-            if(this.value == 'login'){
-              gauth.signIn().then(function(){
-              console.log('gauth.signIn()');
-              checkLoginStatus();
-            });
-            }">
-            <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인"></button>
-        </div>  
+        <div id="google">    
+          <form method="GET" id="login_google" name="login_google">    
+          <button type="button" id="loginBtn" value="login" class="c1" onclick="
+          if(this.value == 'login'){
+            gauth.signIn().then(function(){
+            checkLoginStatus();
+          });
+          }">
+          <label for="gname"></label>
+          <input type="hidden" id="gname" />
+          <label for="gemail"></label>
+          <input type="hidden" id="gemail" />
+          
+          <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인"></button>
+        </form>
+      </div>  
       </section>
 
       <section id="phrase">
