@@ -1,6 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, redirect, url_for, request, jsonify, current_app
+from flask_sqlalchemy import SQLAlchemy, create_engine, text
 from flask_login import LoginManager
 from dotenv import load_dotenv
 
@@ -60,6 +60,23 @@ def getAccessToken(clientId, code) :  # 세션 코드값 code 를 이용해서 A
 #app.config['GOOGLE_OAUTH2_CLIENT_ID'] = '646888679664-jl0vefi6uljn4137itm4tb1vbumjoaf4.apps.googleusercontent.com'
 #app.config['GOOGLE_OAUTH2_CLIENT_SECRET'] = 'SixYOgpnu-pTvlRNXcVCMfhO'
 #oauth2 = UserOAuth2(app)
+
+
+# db
+def create_app(test_config = None):
+     app = Flask(__name__)
+
+    app.json_encoder = CustomJSONEncoder
+
+    if test_config is None:		# 2)
+        app.config.from_pyfile("config.py")
+    else:
+        app.config.update(test_config)
+
+    database     = create_engine(app.config['DB_URL'], encoding = 'utf-8', max_overflow = 0)		# 3)
+    app.database = database		# 4)
+    
+    return app		# 5)
 
 
 
