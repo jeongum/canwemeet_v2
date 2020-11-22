@@ -14,20 +14,22 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
 <script>  
+function gotomain(){
+  console.log("hi");
+  location.href="/main";
+}
 
 function checkLoginStatus(){
   var nameTxt = document.querySelector('#name');
   var loginBtn = document.querySelector('#loginBtn');
   if(gauth.isSignedIn.get()){
     console.log('logined');
-    loginBtn.value = 'logout';
     var profile = gauth.currentUser.get().getBasicProfile();
     var user_name = profile.getName();
     var user_email = profile.getEmail();
     console.log(user_name);
     console.log(user_email);
-    gname.value = user_name;
-    gemail.value = user_email;
+    gotomain();
   }
 }
   function init() {
@@ -64,19 +66,14 @@ function checkLoginStatus(){
           </a>
         </div>
         
-        <div id="google">    
-          <form method="GET" id="login_google" name="login_google">    
+        <div id="google">   
+          <form method="POST" id="login_google" name="login_google">     
           <button type="button" id="loginBtn" value="login" class="c1" onclick="
           if(this.value == 'login'){
             gauth.signIn().then(function(){
             checkLoginStatus();
           });
           }">
-          <label for="gname"></label>
-          <input type="hidden" id="gname" />
-          <label for="gemail"></label>
-          <input type="hidden" id="gemail" />
-          
           <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인"></button>
         </form>
       </div>  
@@ -89,7 +86,7 @@ function checkLoginStatus(){
         </p>        
       </section>
 
-      <a href="/main">메인페이지 링크(테스트용)</a>
+      <a href="/register">회원가입</a>
     </main>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>

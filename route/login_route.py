@@ -9,37 +9,35 @@ login_route = Blueprint('login_route',__name__)
 
 db = SQLAlchemy()
 
+
 @login_route.route('/', methods=['GET','POST'])
 def home():
-    """ Session Control """
-    '''if not session.get('logged_in'):
+    """ Session Control
+    if request.method =='POST':
         return render_template('main.html')
-    else:'''
-    if request.method =='GET':
-        username = request.form.get('gname', False)    
-        email = request.form.get('gemail', False)
-        return render_template('main.html')
-        #return render_template('main.html')
+    """
+    return render_template('login/login.html')
 
 '''
 @login_route.route('/login',methods =['GET','POST'])
 def login():
     """Login Form"""
-    print()
-    if request.method =='POST':
+    if request.method =='GET':
         return render_template('main.html')
     else:
-        email = request.form['gemail']
-        try:
-            data = user.User.query.filter_by(user_email=email).first()
-            if data is not None:
-                session['logged_in'] = True
-                return render_template('login/main.html')
-            else:
-                return 'Dont Login'
-        except:
+        username = request.form.get('gname', False)    
+        email = request.form.get('gemail', False)
+    try:
+        data = user.User.query.filter_by(user_name=username, user_email=email).first()
+        if data is not None:
+            session['logged_in'] = True
+            return render_template('login/main.html')
+        else:
             return 'Dont Login'
+    except:
+        return 'Dont Login'
 '''
+
 @login_route.route('/register/',methods =['GET','POST'])
 def register():
     """Register Form"""
