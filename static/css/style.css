@@ -671,6 +671,7 @@ table a:hover {
 }
 
 #contents-container {
+    padding-bottom: 36px;
     width: 80%;
     height: 100%;
 
