@@ -40,6 +40,10 @@ ul {
     font-weight: bold;
 }
 
+.black-bold {
+    font-weight: bold;
+}
+
 .Noto-Sans {
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -361,6 +365,7 @@ table a:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    box-sizing: border-box;
 }
 
 #minute-title p, #minute-title h2, #minute-details h4 {
@@ -431,6 +436,9 @@ table a:hover {
     padding-top: 70px;
 }
 
+.detail::-webkit-scrollbar {
+    display: none;
+}
 
 /* Minute Page Settings - Minute Information */
 #minute-container #minute-information {
@@ -670,7 +678,7 @@ table a:hover {
     outline: none;
 }
 
-#contents-container {
+#minute-contents-container {
     padding-bottom: 36px;
     width: 80%;
     height: 100%;
@@ -683,13 +691,13 @@ table a:hover {
     align-items: center;
 }
 
-#contents-container #emotion-navigator {
+#minute-contents-container #emotion-navigator {
     padding: 25px 10px;
     box-sizing: border-box;
     width: 90%;
 }
 
-#contents-container .content {
+#minute-contents-container .content {
     width: 90%;
 
     display: flex;
@@ -714,6 +722,75 @@ table a:hover {
 .emotion-icon img {
     width: 1.2em;
     height: 1.2em;
+}
+
+/* Minute Page Settings - Canny-Analysis */
+#emotion-navigator-container, #graph-container, #canny-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+#emotion-navigator-container {
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#canny-container {
+    margin-bottom: 36px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#canny-analysis #emotion-navigator {
+    padding: 25px 10px;
+    
+    width: 90%;
+    box-sizing: border-box;
+}
+
+#entire-emotion, #my-emotion {
+    padding: 25px 0px;
+    margin-bottom: 20px;
+
+    background-color: white;
+    border-radius: 5px;
+    flex-basis: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#entire-emotion {
+    margin-right: 20px;
+}
+
+#canny-advice {
+    padding: 25px 10px;
+    width: 90%;
+
+    text-align: justify;
+    
+}
+
+#canny-title {
+    margin-bottom: 5px;
+
+    display: flex;
+    align-items: center;
+}
+
+#canny-icon {
+    margin-right: 10px;
+    width: 2em;
+}
+
+#canny-advice p {
+    text-indent: 20px;
+    line-height: 2em;
 }
 
 /* Minute Page Settings - Memo */

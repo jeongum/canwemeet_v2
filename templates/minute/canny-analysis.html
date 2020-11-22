@@ -1,20 +1,37 @@
-    {% include 'minute/emotion-navigator.html' %}
-
-    <div id="meeting-emotion-graph">
-        회의 감정 그래프 위치
-        <h3>회의 전체</h3>
-    </div>
-
-    <div id="my-emotion-graph">
-        내 감정 그래프 위치
-        <h3>나</h3>
-    </div>
-
-    <div id="canny-advice">
-        <div id="canny-title">
-            <span id="canny-icon">캐니 아이콘</span>
-            캐니의 조언
+    <div class="contents-container">
+        <div id="emotion-navigator-container">
+            {% include 'minute/emotion-navigator.html' %}
         </div>
-        내용
-        <span class="black-bold">강조</span>
+
+        <div id="graph-container">
+            <div id="entire-emotion">
+                <div id="entire-emotion-graph">
+                </div>
+                <h3>회의 전체</h3>
+            </div>
+    
+            <div id="my-emotion">
+                <div id="my-emotion-graph">
+                </div>
+                <h3>나</h3>
+            </div>
+        </div>        
+
+        <div id="canny-container">
+            <div id="canny-advice">
+                <div id="canny-title">
+                    <img src="{{ url_for('static', filename='/images/minute/icon-canny.png') }}" id="canny-icon">
+                    <h3>캐니의 조언</h3>
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in <span class="black-bold">reprehenderit(강조)</span> in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
     </div>
