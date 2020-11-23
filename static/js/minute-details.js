@@ -1,5 +1,4 @@
 $(document).ready(function(){
-   
     // Toggle tab menu in minute-details
     $('#minute-container .tab-menu').click(function(){
       var tab_id = $(this).attr('data-tab');
