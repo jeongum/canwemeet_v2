@@ -4,12 +4,13 @@ const roomnameInput = document.getElementById('roomname');
 const button = document.getElementById('join_leave');
 const container = document.getElementById('container');
 const count = document.getElementById('count');
-const start_stt = document.getElementById('start_stt');
-const end_stt = document.getElementById('end_stt');
+const start_meeting = document.getElementById('start_meeting');
+const end_meeting = document.getElementById('end_meeting');
 let connected = false;
 let room;
 let chat;
 let conv;
+var socket;
 
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
@@ -32,9 +33,8 @@ function connectButtonHandler(event) {
         button.disabled = true;
         button.innerHTML = 'Connecting...';
         connect(username, roomname).then(() => {
-            start_stt.disabled = false;
-            end_stt.disabled = false;
             $('#roomnameInputModal').modal("hide");
+            start_meeting.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
             button.innerHTML = 'Join call';
@@ -43,8 +43,6 @@ function connectButtonHandler(event) {
     }
     else {
         disconnect();
-        start_stt.disabled = true;
-        end_stt.disabled = true;
         connected = false;
     }
 };
@@ -182,5 +180,26 @@ function zoomTrack(trackElement) {
     }
 };
 
+// real-time stt
+socket = io.connect('http://' + document.domain + ':' + location.port + "/myspace");
+socket.on('ready', function(){
+    socket.emit('start_meeting')
+});
+
+function startMeeting(event) {
+    start_meeting.disabled = true
+    end_meeting.disabled = false
+    socket.emit('before_meeting')
+};
+
+function endMeeting(event) {
+    end_meeting.disabled = true
+    socket.emit('after_meeting')
+    socket.disconnect()
+    location.href='/minute'; // 나가기 버튼 추가해서 옮기기    
+};
+
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
+start_meeting.addEventListener('click', startMeeting);
+end_meeting.addEventListener('click', endMeeting);

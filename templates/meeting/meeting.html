@@ -2,9 +2,9 @@
 
 <body>
     <p id="count">Disconnected.</p>
-    <form action="/stt" method="POST">
-        <button type="submit" id="start_stt" name="start_stt" disabled>회의 시작</button>
-        <button type="submit" id="end_stt" name="end_stt" disabled>회의 종료</button>
+    <form>
+        <button type="button" id="start_meeting" disabled>회의 시작</button>
+        <button type="button" id="end_meeting" disabled>회의 종료</button>
     </form>
     <div id="root">
         <div id="container" class="container">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button id="join_leave"><a href = "/meeting">회의 입장</a></button>
+                    <button id="join_leave"><a href ="/meeting">회의 입장</a></button>
                 </div>
             </form>
         </div>
