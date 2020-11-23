@@ -181,9 +181,13 @@ function zoomTrack(trackElement) {
 };
 
 // real-time stt
-socket = io.connect('http://' + document.domain + ':' + location.port + "/myspace");
+socket = io.connect('http://' + document.domain + ':' + location.port + '/meetingroom');
 socket.on('ready', function(){
-    socket.emit('start_meeting')
+    SpeechtoText()
+});
+socket.on('end',function(){
+    socket.disconnect()
+    location.href='/minute';
 });
 
 function startMeeting(event) {
@@ -194,11 +198,31 @@ function startMeeting(event) {
 
 function endMeeting(event) {
     end_meeting.disabled = true
-    socket.emit('after_meeting')
-    socket.disconnect()
-    location.href='/minute'; // 나가기 버튼 추가해서 옮기기    
+    socket.emit('after_meeting')    
 };
 
+function SpeechtoText() {
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+      var recognition = new webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.maxAlternatives = 10000;
+      recognition.lang = "ko-KR";
+      recognition.start();
+
+      recognition.onresult = function(e) {
+        for(let i = e.resultIndex, len = e.results.length; i < len; i++)
+            if(e.results[i].isFinal)
+                console.log(e.results[i][0].transcript);
+      };
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+    }
+  }
+
+  
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
 start_meeting.addEventListener('click', startMeeting);
