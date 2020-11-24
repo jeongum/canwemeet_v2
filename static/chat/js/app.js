@@ -10,7 +10,7 @@ let connected = false;
 let room;
 let chat;
 let conv;
-var socket;
+let socket;
 
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
@@ -181,6 +181,7 @@ function zoomTrack(trackElement) {
 };
 
 // real-time stt
+
 socket = io.connect('http://' + document.domain + ':' + location.port + '/meetingroom');
 socket.on('ready', function(){
     SpeechtoText()
@@ -189,6 +190,11 @@ socket.on('end',function(){
     socket.disconnect()
     location.href='/minute';
 });
+
+socket.on('receive_message',function(msg){
+    $('#test').append( '<div><b style="color: #000">'+
+    decodeURIComponent(msg.date) + ' ' +decodeURIComponent(msg.data) +'</b> ');
+})
 
 function startMeeting(event) {
     start_meeting.disabled = true
@@ -203,26 +209,28 @@ function endMeeting(event) {
 
 function SpeechtoText() {
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
-      var recognition = new webkitSpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.maxAlternatives = 10000;
-      recognition.lang = "ko-KR";
-      recognition.start();
-
-      recognition.onresult = function(e) {
-        for(let i = e.resultIndex, len = e.results.length; i < len; i++)
-            if(e.results[i].isFinal)
-                console.log(e.results[i][0].transcript);
-      };
-
-      recognition.onerror = function(e) {
-        recognition.stop();
-      }
+        let today = new Date(); 
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.lang = "ko-KR";
+        recognition.start();
+        recognition.onresult = function(e) {
+            for(let i = e.resultIndex, len = e.results.length; i < len; i++)
+                if(e.results[i].isFinal)
+                    transcript = e.results[i][0].transcript;
+                    socket.emit('send_message', {
+                        date:encodeURIComponent(today.toUTCString()),
+                        data:encodeURIComponent(transcript)
+                    })
+        };
+        recognition.onerror = function(e) {
+            recognition.stop();
+        }
     }
   }
 
-  
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
 start_meeting.addEventListener('click', startMeeting);

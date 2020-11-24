@@ -37,6 +37,10 @@ def before_meeting():
 def after_meeting():
     print("===END STT===\n")
     emit('end', broadcast='True')
+
+@socketio.on('send_message', namespace='/meetingroom')
+def send_message(json):
+    emit('receive_message', json, broadcast='True')
             
 if __name__ == '__main__':
     # app.run(host='0.0.0.0',debug =True)
