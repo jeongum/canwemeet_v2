@@ -2,7 +2,7 @@
 
 {% block content %}
 <style>
-  .c1{
+  .googlebuttonstyle1{
     color: transparent;
     background-color: transparent;
     border: 0;
@@ -20,16 +20,22 @@ function gotomain(){
 }
 
 function checkLoginStatus(){
-  var nameTxt = document.querySelector('#name');
+  var nameTxt = document.querySelector('#user_name');
+  var emailTxt = document.querySelector('#user_email');
   var loginBtn = document.querySelector('#loginBtn');
   if(gauth.isSignedIn.get()){
     console.log('logined');
     var profile = gauth.currentUser.get().getBasicProfile();
     var user_name = profile.getName();
     var user_email = profile.getEmail();
-    console.log(user_name);
-    console.log(user_email);
-    gotomain();
+    //console.log(user_name);
+    //console.log(user_email);
+    nameTxt.value = user_name;
+    emailTxt.value = user_email;
+    console.log(nameTxt.value);
+    console.log(emailTxt.value);
+    login_google.submit();
+    //gotomain();
   }
 }
   function init() {
@@ -68,13 +74,15 @@ function checkLoginStatus(){
         
         <div id="google">   
           <form method="POST" id="login_google" name="login_google">     
-          <button type="button" id="loginBtn" value="login" class="c1" onclick="
+          <button type="button" id="loginBtn" value="login" class="googlebuttonstyle1" onclick="
           if(this.value == 'login'){
             gauth.signIn().then(function(){
             checkLoginStatus();
           });
           }">
           <img src="{{ url_for('static', filename='images/login/login-google.png') }}" alt="구글 로그인"></button>
+          <input type="hidden" name="user_email" id="user_email">
+          <input type="hidden" name="user_name" id="user_name">
         </form>
       </div>  
       </section>
@@ -86,7 +94,6 @@ function checkLoginStatus(){
         </p>        
       </section>
 
-      <a href="/register">회원가입</a>
     </main>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>
