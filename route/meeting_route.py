@@ -265,4 +265,4 @@ def speechtotext():
         EXIT_FLAG = not(EXIT_FLAG)
         
 
-    return render_template('chat/index.html')
+    return render_template('meeting/index.html')

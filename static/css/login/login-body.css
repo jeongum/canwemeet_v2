@@ -1,0 +1,12 @@
+body.login {
+    text-align: center;
+    height: 100vh;
+}
+
+.login main {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

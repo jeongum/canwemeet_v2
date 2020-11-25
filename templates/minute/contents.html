@@ -1,27 +1,45 @@
-    <form>
-        <input type="checkbox" name="with-emotion" value="" />감정과 함께 보기
+    <form id="minute-filter">
+        <div id="filter-container">
+            <div id="emotion-filter">
+                <input type="checkbox" id="with-emotion" value="" />
+                <label for="with-emotion">감정과 함께 보기</label>
+            </div>
         
-        <div id="highlight">
-            <input type="checkbox" name="with-highlight" value="" />하이라이트만 보기
-            <span class="highlight-icon">하이라이트 아이콘</span>
+            <div id="highlight-filter">
+                <input type="checkbox" id="with-highlight" value="" />
+                <label for="with-highlight">하이라이트만 보기</label>
+                <img src="{{ url_for('static', filename='/images/minute/icon-highlight.png') }}" class="highlight-icon">
+            </div>
         </div>
 
-        <div id="search">
-            <span id="search-icon">검색창 아이콘</span>
-            <input type="text" name="search" placeholder="검색어를 입력하세요">
+        <div id="search-bar">
+            <span id="search-icon"><i class="fa fa-search"></i></span>
+            <input type="text" id="search" placeholder="검색어를 입력하세요">
         </div>
     </form>
 
-    <div>
+    <div id="minute-contents-container">
         {% include 'minute/emotion-navigator.html' %}
 
-        <div id="content">
+        <div class="content neutral">
             <div class="text">
                 [18:00] 회의가 시작되었습니다.
-                <span class="highlight-icon">하이라이트 아이콘</span>
+                <img src="{{ url_for('static', filename='/images/minute/icon-highlight.png') }}" class="highlight-icon">
             </div>
+
             <div class="emotion-icon">
-                감정 아이콘
+                <img src="{{ url_for('static', filename='/images/minute/icon-neutral.png') }}">
+            </div>
+        </div>
+
+        <div class="content anger">
+            <div class="text">
+                [18:00] 회의가 시작되었습니다.
+                <img src="{{ url_for('static', filename='/images/minute/icon-highlight.png') }}" class="highlight-icon">
+            </div>
+
+            <div class="emotion-icon">
+                <img src="{{ url_for('static', filename='/images/minute/icon-anger.png') }}">
             </div>
         </div>
     </div>

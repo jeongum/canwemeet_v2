@@ -1,0 +1,23 @@
+/* Minute Emotion Navigator Settings */
+#emotion-navigator {
+    display: flex;
+}
+
+#emotion-navigator .circle {
+    margin-right: 5px;
+
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+}
+
+#emotion-navigator img {
+    margin-left: 5px;
+    width: 1.2em;
+}
+
+#emotion-navigator div {
+    width: 150px;
+    display: flex;
+    align-items: center;
+}

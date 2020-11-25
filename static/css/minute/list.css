@@ -1,0 +1,48 @@
+/* Minute Page Settings - List */
+#minute-list {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+}
+
+#minute-list p {
+    padding: 10px 15px;
+    width: 95%;
+}
+
+#minute-list table {
+    width: 90%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table th, table td {
+    padding: 12px 0px;
+}
+
+table th {
+    border-bottom: #0080ff 1px solid;
+}
+
+table th:nth-child(1) {
+    width: 60px;
+}
+
+table th:nth-child(3) {
+    width: 200px;
+}
+
+table th:nth-child(even) {
+    width: 120px;
+}
+
+table td {
+    border-bottom: lightgray 1px solid;
+}
+
+table a:hover {
+    text-decoration: underline;
+}

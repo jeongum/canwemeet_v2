@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
+{% block css %}
+  {{ super () }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-body.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/register.css') }}" type="text/css">
+{% endblock css %}
+
 {% block content %}
-  <body>
+  <body class="blue login">
     <main>
       <section>
         <h2>당신이 <span class="yellow-bold">누구</span>인지 알려주세요.</h2>
@@ -9,12 +15,16 @@
       </section>
 
       <section id="profile-setup">
-        <div id="profile-photo">
-          프로필 사진 위치
-        </div>
-        <div id="profile-form">
-          <!--여기에 회원가입 폼을 넣어주세요-->
-        </div>
+        <form action="" method="POST" enctype="multipart/form-data" id="profile-form">
+          <label id="profile-image">
+            <img src="{{ url_for('static', filename='images/main/profile.png') }}">
+            <input type="file" accept="image/png, image/jpeg" />
+          </label>
+          
+          <input type="email" placeholder="username@example.com" required />
+          <input type="text" placeholder="이름을 입력해주세요" required />
+          <button type="submit">시작하기</button>
+        </form>
       </section>
 
       <section id="privacy-terms">
@@ -38,4 +48,4 @@
       </section>
     </main>
   </body>
-{% endblock %}
+{% endblock content %}
