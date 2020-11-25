@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for, request, jsonify, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from dotenv import load_dotenv
@@ -9,11 +9,24 @@ from route.meeting_route import meeting_route
 from route.minute_route import minute_route
 
 from config import DB_URL
+import requests
+import json
+from oauth2client.contrib.flask_util import UserOAuth2
+
+# Internal imports
+#from user import User
 
 load_dotenv()
 
+# Configuration
+GOOGLE_CLIENT_ID = os.environ.get("646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("HsSzEOXBr67V4OgPIDiA_GKZ", None)
+GOOGLE_DISCOVERY_URL = (
+    "https://accounts.google.com/.well-known/openid-configuration"
+)
+
 app = Flask(__name__)
-app.secret_key = 'canwemeet'
+app.secret_key = app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 
 #db info setting
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
@@ -26,6 +39,7 @@ db.init_app(app)
 app.register_blueprint(login_route)
 app.register_blueprint(meeting_route)
 app.register_blueprint(minute_route)
+
 
 
 if __name__ == '__main__':

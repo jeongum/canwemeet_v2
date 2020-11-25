@@ -1,17 +1,11 @@
 {% extends 'base.html' %}
 
-{% block css %}
-  {{ super () }}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-body.css') }}" type="text/css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/register.css') }}" type="text/css">
-{% endblock css %}
-
 {% block content %}
   <body class="blue login">
     <main>
       <section>
-        <h2>당신이 <span class="yellow-bold">누구</span>인지 알려주세요.</h2>
-        <span>곧 회의가 시작됩니다…</span>
+        <h2><span class="yellow-bold">캔위미트</span>는 즐거우셨나요?</h2>
+        <span>다음에 다시 만나요!</span>
       </section>
 
       <section id="profile-setup">
@@ -20,10 +14,7 @@
             <img src="{{ url_for('static', filename='images/main/profile.png') }}">
             <input type="file" accept="image/png, image/jpeg" />
           </label>
-          
-          <input type="email" name="user_email" placeholder="username@example.com" required />
-          <input type="text" name="user_name" placeholder="이름을 입력해주세요" required />
-          <button type="submit">시작하기</button>
+          <button type="button" onclick="location.href='/' ">다시로그인</button>
         </form>
       </section>
 
@@ -50,3 +41,5 @@
   </body>
 
 {% endblock content %}
+
+<a href="/">relogin</a>
