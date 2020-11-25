@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% block css %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-body.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login.css') }}" type="text/css">
+{% endblock css %}
+
 {% block content %}
   <body class="blue login">
-    <main >
+    <main>
       <section id="logo">
         <img src="{{ url_for('static', filename='images/login/logo.png') }}" alt="캔위미트? 로고">
       </section>
