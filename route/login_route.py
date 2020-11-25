@@ -2,7 +2,7 @@ import os
 from flask import Flask, url_for, redirect, render_template, request,  Blueprint, session, jsonify
 from flask_login import login_user
 
-from model import user_model as user
+from model import models as user
 
 login_route = Blueprint('login_route',__name__)
 
@@ -15,7 +15,7 @@ def home():
         name = request.form.get('user_name', False)    
         email = request.form.get('user_email', False)   
         try:    
-            data = user.User.query.filter_by(user_name =name, user_email=email).first()
+            data = user.User.query.filter_by(user_name=name, user_email=email).first()
             if data is not None: # 데이터가 있으면
                 session['logged_in'] = True
                 loginAuth = 3
