@@ -9,15 +9,16 @@
 </script>
 <body>
     <p id="count">Disconnected.</p>
-    <form action="/stt" method="POST">
-        <button type="submit" id="start_stt" name="start_stt" disabled>회의 시작</button>
-        <button type="submit" id="end_stt" name="end_stt" disabled>회의 종료</button>
+    <form>
+        <button type="button" id="start_meeting" disabled>회의 시작</button>
+        <button type="button" id="end_meeting" disabled>회의 종료</button>
     </form>
     <div id="root">
         <div id="container" class="container">
             <div id="local" class="participant"><div></div><div class="label">Me</div></div>
             <!-- more participants will be added dynamically here -->
         </div>
+    <div id="test"></div>
         
 </body>
 
