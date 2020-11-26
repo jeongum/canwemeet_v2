@@ -1,0 +1,47 @@
+/* Meeting Page Settings - Meeting */
+#meeting #root {
+    width: 100%;
+    height: 100%;
+}
+
+#meeting #container {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+#meeting #local {
+    border-right: lightgray 1px solid;
+    border-bottom: lightgray 1px solid;
+}
+
+#meeting .participant-3 {
+    border-left: lightgray 1px solid;
+    border-top: lightgray 1px solid;
+}
+
+#meeting .participant {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+
+    display: flex;
+}
+
+#meeting .participant div {
+    height: 100%;
+}
+
+#meeting video {
+    width: 100%;
+    height: 100%;
+}
+
+#meeting .label {
+    padding: 8px 10px;
+    font-size: 0.8em;
+    position: absolute;
+}

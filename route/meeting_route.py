@@ -179,9 +179,16 @@ def listen_print_loop(request, responses, stream):
                 stream.last_transcript_was_final = False
 
 
-@meeting_route.route('/meeting')
+@meeting_route.route('/meeting', methods=['POST'])
 def meeting_index():
-    return render_template('meeting/index.html')
+    if 'roomname' in request.form:
+        roomname = request.form['roomname']
+
+    if 'username' in request.form:
+        username = request.form['username']
+    
+    return render_template('meeting/index.html', roomname=roomname, username=username)
+
 
 @meeting_route.route('/enter', methods=['POST'])
 def enter():

@@ -1,12 +1,15 @@
     <header>
         <div id="meeting-title">
-            회의 제목
+            
         </div>
-        <div id="participation-code">
-            참여 코드 복사
-        </div>
-        <div id="meeting-status">
-            녹음 중
+
+        <div id="meeting-property">
+            <div id="participation-code">
+                참여 코드 복사
+            </div>
+            <div id="meeting-status">
+                
+            </div>
         </div>
     </header>
 
@@ -20,6 +23,45 @@
             </div>
         </article>
 
+        <article class="participant">
+            <div class="participant-name">
+                참여자 이름
+            </div>
+            <div class="participant-chat">
+                대화 내용
+            </div>
+        </article>
+
+        <article class="participant">
+            <div class="participant-name">
+                참여자 이름
+            </div>
+            <div class="participant-chat">
+                돋고, 석가는 얼마나 있는 청춘 봄바람이다. 모래뿐일 생생하며, 심장은 피다.
+            </div>
+        </article>
+
+        <article class="local">
+            <div class="local-chat">
+                대화 내용
+            </div>
+        </article>
+
+        <article class="participant">
+            <div class="participant-name">
+                참여자 이름
+            </div>
+            <div class="participant-chat">
+                대화 내용
+            </div>
+        </article>
+
+        <article class="local">
+            <div class="local-chat">
+                찾아다녀도, 듣기만 하여도 부패뿐이다. 인간에 앞이 보배를 피어나는 붙잡아 가슴이 싶이 눈에 따뜻한 것이다. 같이 무엇을 든 봄바람이다.
+            </div>
+        </article>
+
         <article class="local">
             <div class="local-chat">
                 대화 내용
@@ -27,12 +69,15 @@
         </article>
         
         <article class="canny-notice">
-            <div class="canny-chat">
+            <div class="canny-chat anger">
                 캐니 발언 내용
             </div>
         </article>
     </section>
 
     <footer>
-        회의 종료하기
+        <form action="/stt" method="POST">
+            <button type="submit" id="start_stt" name="start_stt" disabled>회의 시작</button>
+            <button type="submit" id="end_stt" name="end_stt" disabled>회의 종료</button>
+        </form>
     </footer>

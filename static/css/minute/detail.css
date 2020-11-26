@@ -1,21 +1,3 @@
-/* Emotion Settings */
-.anger {
-    background-color: #ffb2b2;
-}
-
-.happiness {
-    background-color: #ffedae;
-}
-
-.neutral {
-    background-color: #d9ead3;
-}
-
-.sadness {
-    background-color: #9fc5e8;
-}
-
-
 /* Minute Page Settings - Detail */
 .main #minute-details {
     flex-direction: column;

@@ -15,10 +15,10 @@
             <section>
                 <article class="menu meeting">
                     <img src="{{ url_for('static', filename='images/main/icon-meeting.png') }}">
-                    <a href="/meeting">
-                        <h1>회의 시작하기</h1>
+                    <h1 id="create-room">회의 시작하기</h1>
+                    <a href="">
+                        <h3>이미 회의룸이 존재하시나요?</h3>
                     </a>
-                    <h3>이미 회의룸이 존재하시나요?</h3>
                 </article>
 
                 <article class="menu minute-list">
@@ -29,7 +29,28 @@
                 </article>
             </section>
         </main>
-        
-    </body>
-    
+
+        <section id="create-room-popup">
+            <div id="create-room-container">
+                <header>
+                    방 제목을 입력해주세요.
+                    <img src="{{ url_for('static', filename='images/main/icon-cancel.png') }}" class="cancel">
+                </header>
+
+                <form action="/meeting" method="POST">
+                    <input type="text" name="roomname" id="roomname" placeholder="이곳에 방 제목을 입력해주세요" required>
+                    
+                    
+                    <input type="text" name="username" id="username" placeholder="이름을 입력하세요 (삭제 예정)" required>
+                    
+                    <button type="submit">확인</button>
+                </form>
+            </div>
+        </section>
 {% endblock content %}
+
+{% block scripts %}
+        {{ super() }}
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+{% endblock scripts %}
