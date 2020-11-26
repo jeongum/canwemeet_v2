@@ -68,7 +68,7 @@ def login():
         print("loginAuth")
         loginAuth = 2
         return render_template('login/login.html')
-'''
+
 
 @login_route.route('/logout')
 def logout():
@@ -79,7 +79,7 @@ def logout():
     session.clear()
     #return redirect(url_for('login_route.login'))
     return render_template('login/logout.html')
-
+'''
 @login_route.route('/main')
 def main():
     return render_template('main.html')

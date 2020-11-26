@@ -13,7 +13,7 @@
 
         <main>
             <section id="minute-list">
-                <p>총 <span class="blue-bold">n</span>개의 회의록이 있습니다.</p>
+                <p>총 <span class="blue-bold">7</span>개의 회의록이 있습니다.</p>
 
                 <table>
                     <thead>
@@ -24,7 +24,7 @@
                     </thead>
 
                     <tbody>
-                        {% for mi in minute %}
+                        {% for mi in result %}
                         <tr>
                             <td data-label="No.">{{mi.room_id}}</td>
                             <td data-label="날짜">{{mi.start_time}}</td>

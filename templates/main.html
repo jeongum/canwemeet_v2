@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block css %}
     {{ super () }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
+    <style>
+        .minutebtnstyle{
+          background-color: transparent;
+          border: 0;
+          width:470px;
+          height:470px;
+         }
+      </style>
 {% endblock css %}
 
-=======
->>>>>>> snslogin
 {% block content %}
     <body class="main">
         {% include 'header.html' %}
@@ -24,14 +29,29 @@
                     <h3>이미 회의룸이 존재하시나요?</h3>
                 </article>
                 <article class="menu minute-list">
-                    <a href="/minute">
+                    <form action="minute" method="POST" id="minute_list" name="minute_list">     
+                        <button type="button" id="minutebtn" value="minutebtn" class="minutebtnstyle" onclick="minutefunc();">
                         <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
                         <h1>지난 회의록 보기</h1>
-                    </a>
+                        <input type="hidden" id="submitname" name="submitname">
+                      </form>
+                    <!--<a href="/minute">
+                        <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
+                        <h1>지난 회의록 보기</h1>
+                        <input type="hidden" id="submitname">
+                    </a>-->
                 </article>
             </section>
         </main>
         
     </body>
-    
+<script>
+    function minutefunc(){
+        var profile = gauth.currentUser.get().getBasicProfile();
+        var user_name = profile.getName();
+        submitname.value = user_name;
+        console.log(submitname.value);
+        minute_list.submit();           
+    }
+</script>
 {% endblock content %}
