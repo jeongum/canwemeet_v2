@@ -1,3 +1,32 @@
+<script>  
+
+    function checkLoginStatus(){
+      if(gauth.isSignedIn.get()){
+        console.log('logined');
+        var profile = gauth.currentUser.get().getBasicProfile();
+        window.user_name = profile.getName();
+        var user_email = profile.getEmail();
+        console.log(user_name);
+        console.log(user_email);
+        document.getElementById("uname").innerHTML = "<strong><BIG>" + user_name + "</BIG></strong>님, 반갑습니다!";
+        }
+    }
+      function init() {
+      gapi.load('auth2', function() {
+        console.log('^ㅡ^auth2');
+        window.gauth = gapi.auth2.init({
+            client_id:'646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com'
+        })
+        gauth.then(function(){
+          console.log('ㅡ_ㅡgoogleAuth success');     
+          checkLoginStatus();
+        }, function(){
+          console.log('googleAuth fail');
+        });
+      });
+      }    
+    
+    </script>
     <header id="header">
         <div id="logo-header">
             <a href="/main">
@@ -8,14 +37,19 @@
         <div id="profile">
             <ul>
                 <li id="profile-info">
+                    <span>           
                     <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
-                    (이름)
+                    <p style='display:inline;' id="uname"></p></span>
                     <ul>
                         <li id="profile-menu">
-                            <a href="/logout">로그아웃</a>
+
+                        </li>
+                        <li id="profile-menu">
+                            <!--<a href="/logout">로그아웃</a>-->
                         </li>
                     </ul>
                 </li>                
             </ul>
         </div>
     </header>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>

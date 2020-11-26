@@ -24,12 +24,15 @@
                     </thead>
 
                     <tbody>
+                        {% for mi in minute %}
                         <tr>
-                            <td data-label="No.">1</td>
-                            <td data-label="날짜">2020.11.12</td>
-                            <td data-label="제목"><a href="/minute/details">IT팀 회의</a></td>
-                            <td data-label="참여자">홍길동, 참여자 A 외 2명</td>
+                            <td data-label="No.">{{mi.room_id}}</td>
+                            <td data-label="날짜">{{mi.start_time}}</td>
+                            <td data-label="제목"><a href="/minute/details">{{mi.room_title}}</a></td>
+                            <td data-label="참여자">{{mi.recode}}</td>
                         </tr>
+                        {% endfor %}
+                        
                     </tbody>
                 </table>
             </section>

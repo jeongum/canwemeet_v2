@@ -1,10 +1,11 @@
 const root = document.getElementById('root');
 const meeting_status = document.getElementById('meeting-status');
 const meeting_title = document.getElementById('meeting-title');
-const start_stt = document.getElementById('start_stt');
-const end_stt = document.getElementById('end_stt');
+const start_meeting = document.getElementById('start_meeting');
+const end_meeting = document.getElementById('end_meeting');
 let connected = false;
 let room;
+let socket;
 
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
@@ -23,16 +24,14 @@ function connectMeetingStatusHandler() {
             return;
         }
         connect(username, roomname).then(() => {
-            start_stt.disabled = false;
-            end_stt.disabled = false;
+            start_meeting.disabled = false;
+            end_meeting.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
         });
     }
     else {
         disconnect();
-        start_stt.disabled = true;
-        end_stt.disabled = true;
         connected = false;
     }
 };
@@ -132,6 +131,59 @@ function disconnect() {
     updateParticipantCount();
 };
 
+// real-time stt
+
+socket = io.connect('http://' + document.domain + ':' + location.port + '/meetingroom');
+socket.on('ready', function(){
+    SpeechtoText()
+});
+socket.on('end',function(){
+    socket.disconnect()
+    location.href='/minute';
+});
+
+socket.on('receive_message',function(msg){
+    $('#test').append( '<div><b style="color: #000">'+
+    decodeURIComponent(msg.date) + ' ' +decodeURIComponent(msg.data) +'</b> ');
+})
+
+function startMeeting(event) {
+    start_meeting.disabled = true
+    end_meeting.disabled = false
+    socket.emit('before_meeting')
+};
+
+function endMeeting(event) {
+    end_meeting.disabled = true
+    socket.emit('after_meeting')    
+};
+
+function SpeechtoText() {
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+        let today = new Date(); 
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.lang = "ko-KR";
+        recognition.start();
+        recognition.onresult = function(e) {
+            for(let i = e.resultIndex, len = e.results.length; i < len; i++)
+                if(e.results[i].isFinal)
+                    transcript = e.results[i][0].transcript;
+                    socket.emit('send_message', {
+                        date:encodeURIComponent(today.toUTCString()),
+                        data:encodeURIComponent(transcript)
+                    })
+        };
+        recognition.onerror = function(e) {
+            recognition.stop();
+        }
+    }
+  }
+  
 meeting_title.innerHTML = roomnameInput;
-addLocalVideo();
 connectMeetingStatusHandler();
+addLocalVideo();
+start_meeting.addEventListener('click', startMeeting);
+end_meeting.addEventListener('click', endMeeting);

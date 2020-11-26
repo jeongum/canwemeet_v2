@@ -7,11 +7,11 @@
 
         {% block meta %}
         <meta charset="utf-8">
-        <!-- 
-        ngrok으로 실행할 때
-        "This request has been blocked; the content must be served over HTTPS."
-        오류가 뜨면 사용하세요
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+        <!--
+            ngrok 환경에서
+            ERR_SSL_PROTOCOL_ERROR
+            발생 시 사용하세요
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         -->
         {% endblock meta %}
 
