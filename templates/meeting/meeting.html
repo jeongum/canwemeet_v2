@@ -1,45 +1,7 @@
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chat/css/style.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-
-<script>
-    function getname(){
-    document.getElementById("username").value = user_name;
-    }
-</script>
-<body>
-    <p id="count">Disconnected.</p>
-    <form>
-        <button type="button" id="start_meeting" disabled>회의 시작</button>
-        <button type="button" id="end_meeting" disabled>회의 종료</button>
-    </form>
     <div id="root">
         <div id="container" class="container">
-            <div id="local" class="participant"><div></div><div class="label">Me</div></div>
-            <!-- more participants will be added dynamically here -->
+            <div id="local" class="participant"><div></div><div class="label">나</div></div>
+            <div class="participant participant-1"></div>
+            <div class="participant participant-2"></div>
+            <div class="participant participant-3"></div>
         </div>
-    <div id="test"></div>
-        
-</body>
-
-<div class="modal fade" id="roomnameInputModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form>
-                <div class="modal-body">
-                    <label for="roomname">회의 이름을 입력하세요 </label>
-                    <input type="text" name="roomname" id="roomname"><br>
-                    <label for="username"></label>
-                    <p name="username" id="username">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button id="join_leave" onclick="getname()"><a href = "/meeting">회의 입장</a></button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-{% include 'meeting/scripts.html' %}
-

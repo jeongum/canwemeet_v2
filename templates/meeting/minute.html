@@ -1,38 +1,24 @@
     <header>
         <div id="meeting-title">
-            회의 제목
+            
         </div>
-        <div id="participation-code">
-            참여 코드 복사
-        </div>
-        <div id="meeting-status">
-            녹음 중
+
+        <div id="meeting-property">
+            <div id="participation-code">
+                참여 코드 복사
+            </div>
+            <div id="meeting-status">
+                
+            </div>
         </div>
     </header>
 
-    <section>
-        <article class="participant">
-            <div class="participant-name">
-                참여자 이름
-            </div>
-            <div class="participant-chat">
-                대화 내용
-            </div>
-        </article>
-
-        <article class="local">
-            <div class="local-chat">
-                대화 내용
-            </div>
-        </article>
-        
-        <article class="canny-notice">
-            <div class="canny-chat">
-                캐니 발언 내용
-            </div>
-        </article>
+    <section id="minute-content">
     </section>
 
     <footer>
-        회의 종료하기
+        <form action="/stt" method="POST">
+            <button type="submit" id="start_meeting" disabled>회의 시작</button>
+            <button type="submit" id="end_meeting" disabled>회의 종료</button>
+        </form>
     </footer>
