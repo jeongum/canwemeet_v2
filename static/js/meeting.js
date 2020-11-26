@@ -143,13 +143,43 @@ socket.on('end',function(){
 });
 
 socket.on('receive_message',function(msg){
-    $('#test').append( '<div><b style="color: #000">'+
-    decodeURIComponent(msg.date) + ' ' +decodeURIComponent(msg.data) +'</b> ');
+    let minute = document.getElementById('minute-content');
+    let new_script = document.createElement('article');
+    let received_name = decodeURIComponent(msg.name);
+    let received_chat = decodeURIComponent(msg.data);
+
+    if(received_name == usernameInput) {
+        new_script.setAttribute('class', 'local');
+
+        let new_script_chat = document.createElement('div');
+        new_script_chat.setAttribute('class', 'local-chat');
+        new_script_chat.innerHTML = received_chat;
+
+        new_script.appendChild(new_script_chat);
+    }
+    else {
+        new_script.setAttribute('class', 'participant');
+
+        let new_script_name = document.createElement('div');
+        new_script_name.setAttribute('class', 'participant-name');
+        new_script_name.innerHTML = received_name;
+
+        let new_script_chat = document.createElement('div');
+        new_script_chat.setAttribute('class', 'participant-chat');
+        new_script_chat.innerHTML = received_chat;
+
+        new_script.appendChild(new_script_name);
+        new_script.appendChild(new_script_chat);
+    }
+
+    minute.appendChild(new_script);
+
 })
 
 function startMeeting(event) {
     start_meeting.disabled = true
     end_meeting.disabled = false
+    meeting_status.innerHTML = (room.participants.size + 1) + '명 참여 중';
     socket.emit('before_meeting')
 };
 
@@ -173,6 +203,7 @@ function SpeechtoText() {
                     transcript = e.results[i][0].transcript;
                     socket.emit('send_message', {
                         date:encodeURIComponent(today.toUTCString()),
+                        name:encodeURIComponent(usernameInput),
                         data:encodeURIComponent(transcript)
                     })
         };

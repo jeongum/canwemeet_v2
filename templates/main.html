@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block css %}
     {{ super () }}
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
 {% endblock css %}
 
-=======
->>>>>>> snslogin
 {% block content %}
     <body class="main">
         {% include 'header.html' %}
@@ -40,12 +37,9 @@
                 </header>
 
                 <form action="/meeting" method="POST">
-                    <input type="text" name="roomname" id="roomname" placeholder="이곳에 방 제목을 입력해주세요" required>
-                    
-                    
-                    <input type="text" name="username" id="username" placeholder="이름을 입력하세요 (삭제 예정)" required>
-                    
-                    <button type="submit">확인</button>
+                    <input type="text" name="roomname" id="roomname" placeholder="이곳에 방 제목을 입력해주세요" required> 
+                    <input type="hidden" name="username" id="username" required>
+                    <button type="submit" onclick="getName()">확인</button>
                 </form>
             </div>
         </section>

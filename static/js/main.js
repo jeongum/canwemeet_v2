@@ -6,3 +6,7 @@ $(document).ready(function(){
         $("#create-room-popup").fadeOut();
     });
 });
+
+function getName() {
+    document.getElementById('username').value = user_name;
+}
