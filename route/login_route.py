@@ -11,6 +11,7 @@ loginAuth = 1
 @login_route.route('/', methods=['GET','POST'])
 def home():
     global loginAuth
+    print(loginAuth)
     """ Session Control """
     if  not session.get('logged_in') and loginAuth == 2: # 로그인 처리
         name = request.form.get('user_name', False)    
@@ -22,9 +23,9 @@ def home():
                 session['logged_in'] = True
                 loginAuth = 3
                 print(loginAuth)
-                driver = webdriver.Chrome()
-                url = "http://e17a21405abf.ngrok.io"
-                driver.get(url)
+                #driver = webdriver.Chrome()
+                #url = "http://e17a21405abf.ngrok.io"
+                #driver.get(url)
                 return render_template('main.html')
             else: # 데이터가 없으면 -> 회원가입 처리
                 print("dbpage")
@@ -33,22 +34,19 @@ def home():
                 user.db.session.commit()
                 session['logged_in'] = True
                 loginAuth = 3
-                driver = webdriver.Chrome()
-                url = "http://e17a21405abf.ngrok.io"
-                driver.get(url)
+                #driver = webdriver.Chrome()
+                #url = "http://e17a21405abf.ngrok.io"
+                #driver.get(url)
                 return render_template('main.html')
         except: # 예외입니다
             render_template('login/login.html')
        
     elif loginAuth == 3: # 로그인 세션이 있을 경우
-        render_template('main.html')
+        return render_template('main.html')
 
     elif not session.get('logged_in'): # 로그인 세션이 없는 경우
         print("loginAuth")
         loginAuth = 2
-        return render_template('login/login.html')
-
-    elif loginAuth == 2:
         return render_template('login/login.html')
 
 '''
