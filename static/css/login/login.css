@@ -16,3 +16,19 @@
 #phrase {
     line-height: 1.5em;
 }
+
+#google button {
+    margin: 0px;
+    padding: 0px;
+
+    width: 300px;
+    border: 0px;
+    outline: none;
+
+    color: transparent;
+    background-color: transparent;
+}
+
+#google button:hover {
+    cursor: pointer;
+}
