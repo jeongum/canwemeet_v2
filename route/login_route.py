@@ -3,6 +3,7 @@ from flask import Flask, url_for, redirect, render_template, request,  Blueprint
 from flask_login import login_user
 
 from model import models as user
+from selenium import webdriver
 
 login_route = Blueprint('login_route',__name__)
 
@@ -16,10 +17,14 @@ def home():
         email = request.form.get('user_email', False)   
         try:    
             data = user.User.query.filter_by(user_name=name, user_email=email).first()
+            print(data)
             if data is not None: # 데이터가 있으면
                 session['logged_in'] = True
                 loginAuth = 3
                 print(loginAuth)
+                driver = webdriver.Chrome()
+                url = "http://e17a21405abf.ngrok.io"
+                driver.get(url)
                 return render_template('main.html')
             else: # 데이터가 없으면 -> 회원가입 처리
                 print("dbpage")
@@ -27,16 +32,23 @@ def home():
                 user.db.session.add(data)
                 user.db.session.commit()
                 session['logged_in'] = True
+                loginAuth = 3
+                driver = webdriver.Chrome()
+                url = "http://e17a21405abf.ngrok.io"
+                driver.get(url)
                 return render_template('main.html')
         except: # 예외입니다
             render_template('login/login.html')
        
-    elif session.get('logged_in'): # 로그인 세션이 있을 경우
+    elif loginAuth == 3: # 로그인 세션이 있을 경우
         render_template('main.html')
 
-    else: # 로그인 세션이 없는 경우
+    elif not session.get('logged_in'): # 로그인 세션이 없는 경우
         print("loginAuth")
         loginAuth = 2
+        return render_template('login/login.html')
+
+    elif loginAuth == 2:
         return render_template('login/login.html')
 
 '''
