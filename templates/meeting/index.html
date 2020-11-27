@@ -4,23 +4,46 @@
     {{ super () }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/emotion.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meeting/meeting-body.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meeting/meeting.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meeting/emotion.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meeting/minute.css') }}" type="text/css">
 {% endblock css %}
 
 {% block content %}
-    <body>
+    <body class="main">
         {% include 'header.html' %}
         <main>
-            <section id="meeting">
-                {% include 'meeting/meeting.html' %}
-            </section>
-
-            <section id="emotion">
-                {% include 'meeting/emotion.html' %}
-            </section>
-            
-            <section id="minute">
-                {% include 'meeting/minute.html' %}
+            <section id="meeting-container">
+                <section id="first" class="meeting-column">
+                    <article id="meeting">
+                        {% include 'meeting/meeting.html' %}
+                    </article>
+        
+                    <article id="emotion">
+                        {% include 'meeting/emotion.html' %}
+                    </article>
+                </section>
+                
+                <section id="second" class="meeting-column">
+                    <article id="minute">
+                        {% include 'meeting/minute.html' %}
+                    </article>
+                </section>
             </section>
         </main>
-    </body>
 {% endblock content %}
+
+{% block scripts %}
+        {{ super() }}
+        <script>
+            const usernameInput = '{{username}}';
+            const roomnameInput = '{{roomname}}';
+        </script>
+        <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+        <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+        <script src="{{ url_for('static', filename='js/meeting.js') }}"></script>
+    </body>
+{% endblock scripts %}

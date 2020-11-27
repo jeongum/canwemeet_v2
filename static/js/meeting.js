@@ -1,44 +1,33 @@
 const root = document.getElementById('root');
-const usernameInput = document.getElementById('username');
-const roomnameInput = document.getElementById('roomname');
-const button = document.getElementById('join_leave');
-const container = document.getElementById('container');
-const count = document.getElementById('count');
+const meeting_status = document.getElementById('meeting-status');
+const meeting_title = document.getElementById('meeting-title');
 const start_meeting = document.getElementById('start_meeting');
 const end_meeting = document.getElementById('end_meeting');
 let connected = false;
 let room;
-let chat;
-let conv;
 let socket;
 
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
         let video = document.getElementById('local').firstChild;
         let trackElement = track.attach();
-        trackElement.addEventListener('click', () => { zoomTrack(trackElement); });
         video.appendChild(trackElement);
     });
 };
 
-function connectButtonHandler(event) {
-    event.preventDefault();
+function connectMeetingStatusHandler() {
     if (!connected) {
-        let username = usernameInput.value;
-        let roomname = roomnameInput.value;
+        let username = usernameInput;
+        let roomname = roomnameInput;
         if (!username) {
             alert('Enter your name before connecting');
             return;
         }
-        button.disabled = true;
-        button.innerHTML = 'Connecting...';
         connect(username, roomname).then(() => {
-            $('#roomnameInputModal').modal("hide");
             start_meeting.disabled = false;
+            end_meeting.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
-            button.innerHTML = 'Join call';
-            button.disabled = false;
         });
     }
     else {
@@ -76,15 +65,18 @@ function connect(username, roomname) {
 
 function updateParticipantCount() {
     if (!connected)
-        count.innerHTML = 'Disconnected.';
+        meeting_status.innerHTML = '대기 중';
     else
-        count.innerHTML = (room.participants.size + 1) + ' participants online.';
+        meeting_status.innerHTML = (room.participants.size + 1) + '명 대기 중';
 };
 
 function participantConnected(participant) {
-    let participantDiv = document.createElement('div');
+    let participantCount = room.participants.size;
+    let className = 'participant-' + participantCount;
+    let participantClass = document.getElementsByClassName(className);
+    let participantDiv = participantClass[0];
+
     participantDiv.setAttribute('id', participant.sid);
-    participantDiv.setAttribute('class', 'participant');
 
     let tracksDiv = document.createElement('div');
     participantDiv.appendChild(tracksDiv);
@@ -93,9 +85,7 @@ function participantConnected(participant) {
     labelDiv.setAttribute('class', 'label');
     labelDiv.innerHTML = participant.identity;
     participantDiv.appendChild(labelDiv);
-
-    container.appendChild(participantDiv);
-
+    
     participant.tracks.forEach(publication => {
         if (publication.isSubscribed)
             trackSubscribed(tracksDiv, publication.track);
@@ -107,77 +97,38 @@ function participantConnected(participant) {
 };
 
 function participantDisconnected(participant) {
-    document.getElementById(participant.sid).remove();
+    let participantDiv = document.getElementById(participant.sid);
+
+    while(participantDiv.firstChild) {
+        participantDiv.removeChild(participantDiv.firstChild);
+    }
+
+    participantDiv.setAttribute('id', ' ');
     updateParticipantCount();
 };
 
+
 function trackSubscribed(div, track) {
     let trackElement = track.attach();
-    trackElement.addEventListener('click', () => { zoomTrack(trackElement); });
     div.appendChild(trackElement);
 };
 
 function trackUnsubscribed(track) {
     track.detach().forEach(element => {
-        if (element.classList.contains('participantZoomed')) {
-            zoomTrack(element);
-        }
         element.remove()
     });
 };
 
 function disconnect() {
     room.disconnect();
-    if (chat) {
-        chat.shutdown().then(() => {
-            conv = null;
-            chat = null;
-        });
+
+    let participantDiv = document.getElementById(participant.sid);
+    while(participantDiv.firstChild) {
+        participantDiv.removeChild(participantDiv.firstChild);
     }
-    while (container.lastChild.id != 'local')
-        container.removeChild(container.lastChild);
-    button.innerHTML = 'Join call';
-    if (root.classList.contains('withChat')) {
-        root.classList.remove('withChat');
-    }
+
     connected = false;
     updateParticipantCount();
-};
-function zoomTrack(trackElement) {
-    if (!trackElement.classList.contains('trackZoomed')) {
-        // zoom in
-        container.childNodes.forEach(participant => {
-            if (participant.classList && participant.classList.contains('participant')) {
-                let zoomed = false;
-                participant.childNodes[0].childNodes.forEach(track => {
-                    if (track === trackElement) {
-                        track.classList.add('trackZoomed')
-                        zoomed = true;
-                    }
-                });
-                if (zoomed) {
-                    participant.classList.add('participantZoomed');
-                }
-                else {
-                    participant.classList.add('participantHidden');
-                }
-            }
-        });
-    }
-    else {
-        // zoom out
-        container.childNodes.forEach(participant => {
-            if (participant.classList && participant.classList.contains('participant')) {
-                participant.childNodes[0].childNodes.forEach(track => {
-                    if (track === trackElement) {
-                        track.classList.remove('trackZoomed');
-                    }
-                });
-                participant.classList.remove('participantZoomed')
-                participant.classList.remove('participantHidden')
-            }
-        });
-    }
 };
 
 // real-time stt
@@ -192,13 +143,43 @@ socket.on('end',function(){
 });
 
 socket.on('receive_message',function(msg){
-    $('#test').append( '<div><b style="color: #000">'+
-    decodeURIComponent(msg.date) + ' ' +decodeURIComponent(msg.data) +'</b> ');
+    let minute = document.getElementById('minute-content');
+    let new_script = document.createElement('article');
+    let received_name = decodeURIComponent(msg.name);
+    let received_chat = decodeURIComponent(msg.data);
+
+    if(received_name == usernameInput) {
+        new_script.setAttribute('class', 'local');
+
+        let new_script_chat = document.createElement('div');
+        new_script_chat.setAttribute('class', 'local-chat');
+        new_script_chat.innerHTML = received_chat;
+
+        new_script.appendChild(new_script_chat);
+    }
+    else {
+        new_script.setAttribute('class', 'participant');
+
+        let new_script_name = document.createElement('div');
+        new_script_name.setAttribute('class', 'participant-name');
+        new_script_name.innerHTML = received_name;
+
+        let new_script_chat = document.createElement('div');
+        new_script_chat.setAttribute('class', 'participant-chat');
+        new_script_chat.innerHTML = received_chat;
+
+        new_script.appendChild(new_script_name);
+        new_script.appendChild(new_script_chat);
+    }
+
+    minute.appendChild(new_script);
+
 })
 
 function startMeeting(event) {
     start_meeting.disabled = true
     end_meeting.disabled = false
+    meeting_status.innerHTML = (room.participants.size + 1) + '명 참여 중';
     socket.emit('before_meeting')
 };
 
@@ -222,6 +203,7 @@ function SpeechtoText() {
                     transcript = e.results[i][0].transcript;
                     socket.emit('send_message', {
                         date:encodeURIComponent(today.toUTCString()),
+                        name:encodeURIComponent(usernameInput),
                         data:encodeURIComponent(transcript)
                     })
         };
@@ -230,8 +212,9 @@ function SpeechtoText() {
         }
     }
   }
-
+  
+meeting_title.innerHTML = roomnameInput;
+connectMeetingStatusHandler();
 addLocalVideo();
-button.addEventListener('click', connectButtonHandler);
 start_meeting.addEventListener('click', startMeeting);
 end_meeting.addEventListener('click', endMeeting);

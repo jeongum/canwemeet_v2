@@ -7,22 +7,28 @@
 
         {% block meta %}
         <meta charset="utf-8">
+        <!--
+            ngrok 환경에서
+            ERR_SSL_PROTOCOL_ERROR
+            발생 시 사용하세요
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        -->
         {% endblock meta %}
 
         {% block css %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
         {% endblock css %}
 
+        <!-- Fabicon -->
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    </head>
+        {% block content %}
+    <body>
+        {% endblock content %}
 
         {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </body>
         {% endblock scripts %}
-    </head>
-        {% block content %}
-        <body></body>
-        {% endblock content %}
 </html>

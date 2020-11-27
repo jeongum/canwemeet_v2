@@ -101,7 +101,9 @@ function checkLoginStatus(){
       </section>
 
     </main>
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-</body>
 {% endblock content %}
 
+{% block scripts %}
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+  </body>
+{% endblock scripts %}

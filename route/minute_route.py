@@ -19,6 +19,15 @@ def minute_list():
     return render_template('minute/list.html', result=result)
 
 # Testing URL
-@minute_route.route('/minute/details')
+@minute_route.route('/minute/details', methods=['GET'])
 def minute_details():
-    return render_template('minute/details.html')
+    board_id = request.args.get("mid")
+    print(board_id)
+    result = minutedb.db.engine.execute("SELECT room_title, DATE(start_time) AS date, TIME(start_time) AS ST, TIME(end_time) AS ET from meeting_information AS mi WHERE mi.room_id =%s", (board_id))
+    usernum = minutedb.db.engine.execute("SELECT count(us.user_name) AS unum from meeting_information AS mi INNER JOIN meeting_participants AS mp INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE mi.room_id=%s", (board_id))
+    name1 = minutedb.db.engine.execute("SELECT us.user_name from meeting_information AS mi INNER JOIN meeting_participants AS mp INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_id=1 AND mi.room_id=%s", (board_id))
+    name2 = minutedb.db.engine.execute("SELECT us.user_name from meeting_information AS mi INNER JOIN meeting_participants AS mp INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_id=2 AND mi.room_id=%s", (board_id))
+    name3 = minutedb.db.engine.execute("SELECT us.user_name from meeting_information AS mi INNER JOIN meeting_participants AS mp INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_id=3 AND mi.room_id=%s", (board_id))
+    name4 = minutedb.db.engine.execute("SELECT us.user_name from meeting_information AS mi INNER JOIN meeting_participants AS mp INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_id=4 AND mi.room_id=%s", (board_id))
+    
+    return render_template('minute/details.html', result=result, usernum=usernum, name1=name1, name2=name2, name3=name3, name4=name4)

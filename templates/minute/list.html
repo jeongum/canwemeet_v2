@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minute/list.css') }}" type="text/css">
+    <style>
+        .btnstyle{
+          background-color: transparent;
+          border: 0;
+         }
+      </style>
 {% endblock css %}
 
 {% block content %}
@@ -28,7 +34,10 @@
                         <tr>
                             <td data-label="No.">{{mi.room_id}}</td>
                             <td data-label="날짜">{{mi.start_time}}</td>
-                            <td data-label="제목"><a href="/minute/details">{{mi.room_title}}</a></td>
+                            <td data-label="제목"><form action="/minute/details">
+                                <input type="hidden" id="mid" name="mid" value={{mi.room_id}}>
+                                <button onclick="submit" class="btnstyle">{{mi.room_title}}</button>
+                            </form></td>
                             <td data-label="참여자">{{mi.recode}}</td>
                         </tr>
                         {% endfor %}

@@ -1,20 +1,26 @@
     <div id="emotion-graph">
         <div id="graph-arrow">
-            화살표
+            <img src="{{ url_for('static', filename='/images/meeting/icon-arrow.png') }}">
         </div>
-        <div id="graph-line">
-            그래프 선
-        </div>
+
+        <div id="graph-line"></div>
+
         <div id="emotion-image">
             <ul>
-                <li>화남</li>
-                <li>슬픔</li>
-                <li>무감정</li>
-                <li>기쁨</li>
+                <li>
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-anger-mono.png') }}">
+                </li>
+                <li>
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-sadness-mono.png') }}">
+                </li>
+                <li>
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-neutral-mono.png') }}">
+                </li>
+                <li>
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-happiness-mono.png') }}">
+                </li>
             </ul>
         </div>
     </div>
-    <p>
-        <h3>지금 회의는?            
-        </h3>
-    </p>
+
+    <h3>지금 회의는?</h3>
