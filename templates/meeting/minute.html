@@ -17,9 +17,23 @@
     </section>
 
     <footer>
-        <form action="/stt" method="POST">
             <button type="submit" id="start_meeting" disabled>회의 시작</button>
-            <button type="submit" id="end_meeting" disabled>회의 종료</button>
-            <input type="hidden" id="submitname" name="submitname" value="윤소현">
-        </form>
+            <!--<button type="submit" id="end_meeting" disabled>회의 종료</button>-->
+            
+            <form action="minute" method="POST" id="minute_list" name="minute_list">     
+            <button type="button" id="end_meeting" onclick="minutefunc();">회의 종료</button>
+            <input type="hidden" id="submitname" name="submitname">
+          </form>
+        
     </footer>
+
+    <script>
+        function minutefunc(){
+            var profile = gauth.currentUser.get().getBasicProfile();
+            var user_name = profile.getName();
+            submitname.value = user_name;
+            console.log(submitname.value);
+            minute_list.submit();           
+        }
+    </script>
+    

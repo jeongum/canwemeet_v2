@@ -7,6 +7,7 @@ from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import VideoGrant, IpMessagingGrant
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioException, TwilioRestException
+from model import models as minutedb
 
 meeting_route = Blueprint('meeting_route',__name__)
 
@@ -65,3 +66,11 @@ def enter():
 
     return {'token': token.to_jwt().decode(),
             'conversation_sid': conversation_sid}
+
+
+@meeting_route.route('/minute', methods=['GET','POST'])
+def minute_list():
+    name = request.form.get('submitname')    
+    print(name)
+    result = minutedb.db.engine.execute("SELECT * from meeting_participants AS mp INNER JOIN meeting_information AS mi INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_name =%s", (name))
+    return render_template('minute/list.html', result=result)
