@@ -4,8 +4,28 @@
     <body>
         {% include 'header.html' %}
         <main>
+<<<<<<< Updated upstream
             <section id="meeting">
                 {% include 'meeting/meeting.html' %}
+=======
+            <section id="meeting-container">
+                <section id="first" class="meeting-column">
+                    <article id="meeting">
+                        {% include 'meeting/meeting.html' %}
+                    </article>
+        
+                    <article id="emotion">
+                        {% include 'meeting/emotion.html' %}
+                    </article>
+                </section>
+                
+                <section id="second" class="meeting-column">
+                    <article id="minute">
+                        {% include 'meeting/minute.html' %}
+                    </article>
+                </section>
+                <input type="hidden" name="wav_index" id="wav_index">
+>>>>>>> Stashed changes
             </section>
 
             <section id="emotion">
