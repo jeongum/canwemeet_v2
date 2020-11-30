@@ -1,23 +1,36 @@
     <div id="emotion-graph">
         <div id="graph-arrow">
-            <img src="{{ url_for('static', filename='/images/meeting/icon-arrow.png') }}">
+            <ul>
+                <li id = "happy-arrow">
+                   
+                </li>
+                <li id = "neutral-arrow"  class="current_arrow">
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-arrow.png') }}">
+                </li>
+                <li id = "sad-arrow">
+                    
+                </li>
+                <li id = "angry-arrow">
+                    
+                </li>
+            </ul>
         </div>
 
         <div id="graph-line"></div>
 
         <div id="emotion-image">
             <ul>
-                <li>
-                    <img src="{{ url_for('static', filename='/images/meeting/icon-anger-mono.png') }}">
+                <li id="happy-icon">
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-happy-mono.png') }}">
                 </li>
-                <li>
-                    <img src="{{ url_for('static', filename='/images/meeting/icon-sadness-mono.png') }}">
-                </li>
-                <li>
+                <li id="neutral-icon" class="current_icon">
                     <img src="{{ url_for('static', filename='/images/meeting/icon-neutral-mono.png') }}">
                 </li>
-                <li>
-                    <img src="{{ url_for('static', filename='/images/meeting/icon-happiness-mono.png') }}">
+                <li id="sad-icon" >
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-sad-mono.png') }}">
+                </li>
+                <li id="angry-icon">
+                    <img src="{{ url_for('static', filename='/images/meeting/icon-angry-mono.png') }}">
                 </li>
             </ul>
         </div>

@@ -198,14 +198,19 @@ function SpeechtoText() {
         recognition.lang = "ko-KR";
         recognition.start();
         recognition.onresult = function(e) {
-            for(let i = e.resultIndex, len = e.results.length; i < len; i++)
-                if(e.results[i].isFinal)
+            for(let i = e.resultIndex, len = e.results.length; i < len; i++){
+                if(e.results[i].isFinal){
+                    $('#wav_index').val(i);
+                    get_emotion();
                     transcript = e.results[i][0].transcript;
-                    socket.emit('send_message', {
-                        date:encodeURIComponent(today.toUTCString()),
-                        name:encodeURIComponent(usernameInput),
-                        data:encodeURIComponent(transcript)
-                    })
+                }
+            }
+            socket.emit('send_message', {
+                date:encodeURIComponent(today.toUTCString()),
+                name:encodeURIComponent(usernameInput),
+                data:encodeURIComponent(transcript)
+            })
+            
         };
         recognition.onerror = function(e) {
             recognition.stop();
@@ -218,3 +223,71 @@ connectMeetingStatusHandler();
 addLocalVideo();
 start_meeting.addEventListener('click', startMeeting);
 end_meeting.addEventListener('click', endMeeting);
+
+
+function get_emotion(){
+    var index = $('#wav_index').val();
+    console.log(index);
+    $.ajax({
+        type : 'POST',                                  
+        url : '/predict',
+        data:  {'index': index },
+        success : function(result){
+            set_emotion(result)
+        },
+        error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    })
+}
+
+var current_wav = 1 ;
+var current_emo = [0,0,0,0];
+var cur_arrow_pos = 1;
+function set_emotion(result){
+    if(result == 'happy') current_emo[0] ++;
+    else if(result == 'neutral') current_emo[1] ++;
+    else if(result == 'sad') current_emo[2] ++;
+    else if(result == 'angry') current_emo[3] ++;
+
+    if(current_wav % 7 == 0) {
+        var pre_arrow_pos = cur_arrow_pos;
+        var mode = 0;
+        for(var i =0 ; i <4; i++){
+            if(mode < current_emo[i]){
+                mode = current_emo[i];
+                cur_arrow_pos = i;
+            }
+        }
+
+        var r_result = '';
+
+        if(pre_arrow_pos == 0) r_result = 'happy'
+        else if(pre_arrow_pos == 1) r_result = 'neutral'
+        else if(pre_arrow_pos == 2) r_result = 'sad'
+        else if(pre_arrow_pos == 3) r_result = 'angry'
+
+        var arrow_img = $('#graph-arrow li.current_arrow').html();
+        
+        $('#graph-arrow li.current_arrow').empty();
+        $('#graph-arrow li.current_arrow').removeClass('current_arrow');
+        $('#emotion-image li.current_icon').children('img').attr("src", "/static//images/meeting/icon-"+r_result+"-mono.png");
+        $('#emotion_image li.current_icon').removeClass('current_icon')
+
+        if(cur_arrow_pos == 0) r_result = 'happy'
+        else if(cur_arrow_pos == 1) r_result = 'neutral'
+        else if(cur_arrow_pos == 2) r_result = 'sad'
+        else if(cur_arrow_pos == 3) r_result = 'angry'
+
+        $('#graph-arrow li#'+r_result+'-arrow').addClass('current_arrow');
+        $('#graph-arrow li.current_arrow').html(arrow_img);
+        $('#emotion-image li#'+r_result+'-icon').children('img').attr("src", "/static//images/meeting/icon-"+r_result+".png");
+        $('#emotion-image li#'+r_result+'-icon').addClass('current_icon');
+
+        current_emo = [0,0,0,0];    
+    }
+    if(current_wav == 7){
+        $('#minute-content').append('<article class="canny-notice"><div class="canny-chat">똑똑~"이정음"님 회의에 집중하시고 계시죠? :)</div></article>');
+    }
+    current_wav ++ ;
+}

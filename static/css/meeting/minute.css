@@ -126,6 +126,11 @@
     background-color: #cbcbcb;
 }
 
+.canny-chat{
+    font-size: 0.8rem;
+    background-color: #d9ead3;
+}
+
 #minute footer form {
     width: 100%;
     height: 100%;

@@ -11,7 +11,12 @@
     border-radius: 10px;
     background-color: #ffd862;
 }
-
+#graph-arrow ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
 #emotion-image ul {
     margin: 10px 0px 5px 0px;
     padding: 0px;
