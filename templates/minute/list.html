@@ -1,3 +1,13 @@
+<script>
+    function minuteDfunc(){
+        var profile = gauth.currentUser.get().getBasicProfile();
+        var user_name = profile.getName();
+        $('#subname').val(user_name);
+        $("#minute_detail").submit();           
+    }
+</script>
+
+
 {% extends 'base.html' %}
 
 {% block css %}
@@ -34,9 +44,11 @@
                         <tr>
                             <td data-label="No.">{{mi.room_id}}</td>
                             <td data-label="날짜">{{mi.start_time}}</td>
-                            <td data-label="제목"><form action="/minute/details">
+                            <td data-label="제목"><form action="minute/details" id="minute_detail" name="minute_detail">
                                 <input type="hidden" id="mid" name="mid" value={{mi.room_id}}>
-                                <button onclick="submit" class="btnstyle">{{mi.room_title}}</button>
+                                <input type="hidden" id="subname" name="subname" value="">
+                                <button type="button" onclick="minuteDfunc();" class="btnstyle">{{mi.room_title}}</button>
+                                
                             </form></td>
                             <td data-label="참여자">{{mi.recode}}</td>
                         </tr>
@@ -48,3 +60,4 @@
         </main>
     </body>
 {% endblock content %}
+

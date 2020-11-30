@@ -23,9 +23,6 @@ def home():
                 session['logged_in'] = True
                 loginAuth = 3
                 print(loginAuth)
-                #driver = webdriver.Chrome()
-                #url = "http://e17a21405abf.ngrok.io"
-                #driver.get(url)
                 return render_template('main.html')
             else: # 데이터가 없으면 -> 회원가입 처리
                 print("dbpage")
@@ -34,10 +31,8 @@ def home():
                 user.db.session.commit()
                 session['logged_in'] = True
                 loginAuth = 3
-                #driver = webdriver.Chrome()
-                #url = "http://e17a21405abf.ngrok.io"
-                #driver.get(url)
                 return render_template('main.html')
+
         except: # 예외입니다
             render_template('login/login.html')
        
