@@ -36,6 +36,7 @@ def minute_details():
     
     return render_template('minute/details.html', result=result, usernum=usernum, name1=name1, name2=name2, name3=name3, name4=name4, stt=stt, memo=memo)
 
+
 @minute_route.route('/minute/details/memo', methods=['GET'])
 def minute_update():   
     return render_template('main.html')

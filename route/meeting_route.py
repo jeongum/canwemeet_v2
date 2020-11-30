@@ -35,8 +35,9 @@ def meeting_index():
 
     if 'username' in request.form:
         username = request.form['username']
-    
-    return render_template('meeting/index.html', roomname=roomname, username=username)
+    result = minutedb.db.engine.execute("SELECT user_name FROM user WHERE user_name=%s", (username))
+                
+    return render_template('meeting/index.html', roomname=roomname, username=username, result=result)
 
 
 @meeting_route.route('/enter', methods=['POST'])

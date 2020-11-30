@@ -26,6 +26,7 @@
                     <h1 id="create-room">회의 시작하기</h1>
                     <a href="">
                         <h3>이미 회의룸이 존재하시나요?</h3>
+                        
                     </a>
                 </article>
                 <article class="menu minute-list">
@@ -51,11 +52,13 @@
                     <img src="{{ url_for('static', filename='images/main/icon-cancel.png') }}" class="cancel">
                 </header>
 
-                <form action="/meeting" method="POST">
+                <form action="/meeting" id="meeting" name="meeting" method="POST">
                     <input type="text" name="roomname" id="roomname" placeholder="이곳에 방 제목을 입력해주세요" required> 
                     <input type="hidden" name="username" id="username" required>
-                    <button type="submit" onclick="getName()">확인</button>
+                    <button type="button" onclick="meetingfunc()">확인</button>
+                    
                 </form>
+                    
             </div>
         </section>
 {% endblock content %}
@@ -66,12 +69,19 @@
     </body>
 <script>
     function minutefunc(){
-        var profile = gauth.currentUser.get().getBasicProfile();
-        var user_name = profile.getName();
-        submitname.value = user_name;
+        submitname.value = uname.value;
         console.log(submitname.value);
         minute_list.submit();           
     }
 </script>
+
+<script>
+    function meetingfunc(){
+        username.value = uname.value;
+        console.log(username.value);
+        meeting.submit();           
+    }
+</script>
+
 {% endblock scripts %}
 
