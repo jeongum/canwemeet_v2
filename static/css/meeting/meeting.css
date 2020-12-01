@@ -1,3 +1,4 @@
+
 /* Import Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
 
@@ -223,7 +224,6 @@ ul {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-}
 
 /* Meeting Page Settings - Meeting */
 #meeting #root {

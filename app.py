@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from route.login_route import login_route
 from route.minute_route import minute_route
 from route.meeting_route import meeting_route
+from route.ser_route import ser_route
 from config import DB_URL
 import requests
 import json
@@ -41,6 +42,7 @@ db.init_app(app)
 app.register_blueprint(login_route)
 app.register_blueprint(meeting_route)
 app.register_blueprint(minute_route)
+app.register_blueprint(ser_route)
 
 @socketio.on('before_meeting', namespace='/meetingroom')
 def before_meeting():

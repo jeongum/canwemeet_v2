@@ -129,6 +129,17 @@
     background-color: #cbcbcb;
 }
 
+.canny-chat.neutral{
+    font-size: 0.8rem;
+    background-color: #d9ead3;
+}
+
+.canny-chat.sad{
+    font-size: 0.8rem;
+    background-color: #9fc5e8;
+}
+
+
 #minute footer form {
     width: 100%;
     height: 100%;
