@@ -7,7 +7,7 @@
         var user_email = profile.getEmail();
         console.log(user_name);
         console.log(user_email);
-        document.getElementById("uname").innerHTML = "<strong><BIG>" + user_name + "</BIG></strong>님, 반갑습니다!";
+        document.getElementById("user-name").innerHTML = "<span>" + user_name + "</span>님, 반갑습니다!";
         }
     }
       function init() {
@@ -38,15 +38,14 @@
                 <li id="profile-info">
                     <span>           
                     <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
-                    <p style='display:inline;' id="uname"></p></span>
+                    <p id="user-name"></p></span>
+                    <!--
                     <ul>
                         <li id="profile-menu">
-
-                        </li>
-                        <li id="profile-menu">
-                            <!--<a href="/logout">로그아웃</a>-->
+                            <a href="/logout">로그아웃</a>
                         </li>
                     </ul>
+                    -->
                 </li>                
             </ul>
         </div>
