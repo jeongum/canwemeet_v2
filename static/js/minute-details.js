@@ -12,8 +12,8 @@ $(document).ready(function(){
 
     // Draw Emotion Graph Pie Chart
     // 나중에 DB에서 감정 % 받아와서 변수에 저장해야 함. 지금은 임시로 지정해 두겠습니다.
-    var entire_emotion = [25, 55, 10, 10];  //anger, happiness, neutral, sadness
-    var my_emotion = [30, 25, 15, 30];      //anger, happiness, neutral, sadness
+    var entire_emotion = [19.4, 16.1, 51.6, 12.9];  //anger, happiness, neutral, sadness
+    var my_emotion = [25, 12.5, 50, 12.5];      //anger, happiness, neutral, sadness
 
     var entire_gradient_points = [entire_emotion[0],
                                   entire_emotion[0] + entire_emotion[1],
