@@ -1,11 +1,34 @@
-<form>
-        
-    <form action="minute/details/memo" method="GET">   
-        <textarea></textarea>          
+<form>    
+    <textarea>
         {% for mm in memo %}
-            <textarea>{{mm.content}}</textarea>
-    <input type="hidden" id="memoid" name="memoid" value="{{mm.memo_id}}">
-    <button type="submit">저장</button>
+            {{mm.content}}
+        </textarea>
     {% endfor %}
-    </form>
+    <button type="submit">저장</button>
+
 </form>
+
+
+
+
+<!--
+    <form action="/minute/details/insert_memo" method="POST" id="submitmemo" name="submitmemo">   
+        <textarea id="memocontent" name="memocontent">
+        {% for mm in memo %}
+            {{mm.content}}
+        </textarea>  
+    <input type="hidden" id="memoid" name="memoid" value="{{mm.memo_id}}">
+    {% endfor %}
+    <button type="submit" onclick="submemo()">저장</button>
+    </form>
+
+<script>
+    function submemo(){
+        console.log(memoid.value);
+        console.log($('#memocontent').val());
+        $("#submitmemo").submit();           
+    }
+</script>
+
+
+-->

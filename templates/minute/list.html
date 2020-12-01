@@ -2,7 +2,7 @@
     function minuteDfunc(){
         var profile = gauth.currentUser.get().getBasicProfile();
         var user_name = profile.getName();
-        $('#subname').val(user_name);
+        //$('#subname').val(user_name);
         console.log(mid2.value)
         $("#minute_detail").submit();           
     }
@@ -48,7 +48,7 @@
                             <td data-label="제목">
                                 <form action="minute/details" id="minute_detail" name="minute_detail">
                                 <input type="hidden" id="mid" name="mid" value={{mi.room_id}}>
-                                <input type="hidden" id="subname" name="subname" value="">
+                                <!--<input type="hidden" id="subname" name="subname" value="">-->
                                 <button type="submit" onclick="minuteDfunc();" class="btnstyle">{{mi.room_title}}</button>
                                 
                             </form></td>
