@@ -68,6 +68,9 @@
     padding: 6px 8px;
     color: #0080ff;
     border: #0080ff 1px solid;
+
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 #participation-code:hover {
@@ -161,6 +164,9 @@
     
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 0.9em;
+
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 #minute footer button:hover:enabled {

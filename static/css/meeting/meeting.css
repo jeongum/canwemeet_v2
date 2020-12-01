@@ -1,3 +1,316 @@
+
+/* Import Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
+
+
+/* Basic Settings */
+body {
+    margin: 0 auto;
+    color: #242424;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #e5f2ff;
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* Font Colors & Weight Settings */
+.blue {
+    background-color: #0080ff;
+    color: white;
+}
+
+.blue a {
+    color: white;
+}
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+.blue-bold {
+    color: #0080ff;
+    font-weight: bold;
+}
+
+.black-bold {
+    font-weight: bold;
+}
+
+.Noto-Sans {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Header Page Settings */
+#header {
+    background-color: #0080ff;
+    color: white;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header a {
+    color: white;
+}
+
+#header #logo-header {
+    flex-basis: 20%;
+}
+
+#header #logo-header img {
+    margin: 0px 30px;
+    width: 140px;
+    height: auto;
+    vertical-align: middle;
+}
+
+#header #profile {
+    flex-basis: 80%;
+    text-align: right;
+}
+
+#header #profile img {
+    margin-right: 10px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+#header #profile ul {
+    padding: 0px;
+}
+
+#header #profile #profile-info {
+    margin-right: 30px;
+    height: 100%;
+}
+
+#header #profile-info #profile-menu {
+    display: none;
+    width: 70px;
+    height: 20px;
+
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header #profile-info:hover #profile-menu
+{
+    padding: 20px 30px;
+
+    display: block;
+    position: absolute;
+    top: 60x;
+    right: 0px;
+
+    background-color: #0080ff;
+    text-align: right;
+}
+
+#header #profile-info #profile-menu a:hover {
+    color: #ffd862;
+}
+
+#header #user-name {
+    margin: 0px;
+    display: inline;
+}
+
+#header #user-name span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+
+/* Main Page Settings */
+.main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main main {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main main section {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+/* Emotion Settings */
+.anger {
+    background-color: #ffb2b2;
+}
+
+.happiness {
+    background-color: #ffedae;
+}
+
+.neutral {
+    background-color: #d9ead3;
+}
+
+.sadness {
+    background-color: #9fc5e8;
+}
+
+/* Meeting Page Settings */
+.main main {
+    max-height: calc(100vh - 60px);
+}
+
+#meeting-container {
+    width: 90%;
+    height: 85%;
+}
+
+#first {
+    margin-right: 20px;
+    flex-basis: 70%;
+    height: 100%;
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#second, #meeting, #emotion {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+}
+
+#second {
+    flex-basis: 30%;
+    height: 100%;
+}
+
+#meeting {
+    margin-bottom: 20px;
+    width: 100%;
+    max-height: 100%;
+    flex-basis: 75%;
+    box-sizing: border-box;
+}
+
+#emotion {
+    padding: 12px 48px;
+    width: 100%;
+    flex-basis: 25%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+/* Meeting Page Settings - Meeting */
+#meeting #root {
+    width: 100%;
+    height: 100%;
+}
+
+#meeting #container {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+#meeting #local {
+    border-right: lightgray 1px solid;
+    border-bottom: lightgray 1px solid;
+}
+
+#meeting .participant-3 {
+    border-left: lightgray 1px solid;
+    border-top: lightgray 1px solid;
+}
+
+#meeting .participant {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+
+    display: flex;
+}
+
+#meeting .participant div {
+    height: 100%;
+}
+
+#meeting video {
+    width: 100%;
+    height: 100%;
+}
+
+#meeting .label {
+    padding: 8px 10px;
+    font-size: 0.8em;
+    position: absolute;
+}
+
+/* Meeting Page Settings - Emotion */
+#graph-arrow img {
+    width: 1.6em;
+    height: 1.6em;
+}
+
+#graph-line {
+    margin: 5px 0px;
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #ffd862;
+}
+
+#graph-arrow ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#emotion-image ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#emotion-image img {
+    width: 1.8em;
+    height: 1.8em;
+}
+
+#emotion h3 {
+    margin: 5px 0px 5px 0px;
+    text-align: center;
+}
+
 /* Meeting Page Settings - Minute */
 #minute {
     width: 100%;
@@ -68,6 +381,9 @@
     padding: 6px 8px;
     color: #0080ff;
     border: #0080ff 1px solid;
+
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 #participation-code:hover {
@@ -127,15 +443,16 @@
 }
 
 .canny-chat.neutral{
-    font-size: 0.8rem;
     background-color: #d9ead3;
 }
 
 .canny-chat.sad{
-    font-size: 0.8rem;
-    background-color: #9fc5e8;
+    background-color:   #9fc5e8;
 }
 
+.canny-chat.happy{
+    background-color: #ffedae;
+}
 
 #minute footer form {
     width: 100%;
@@ -161,6 +478,9 @@
     
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 0.9em;
+
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 #minute footer button:hover:enabled {
@@ -171,136 +491,345 @@
     border-right: lightgray 1px solid;
 }
 
-/* Meeting Page Settings */
-.main main {
-    max-height: calc(100vh - 60px);
-}
-
-#meeting-container {
-    width: 90%;
-    height: 85%;
-}
-
-#first {
-    margin-right: 20px;
-    flex-basis: 70%;
-    height: 100%;
-    max-height: 100%;
+/* Main Page Settings */
+.main {
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
 }
 
-#second, #meeting, #emotion {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+.main main {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#second {
-    flex-basis: 30%;
+.main main section {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
+
+
+/* Basic Settings */
+body {
+    margin: 0 auto;
+    color: #242424;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #e5f2ff;
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* Font Colors & Weight Settings */
+.blue {
+    background-color: #0080ff;
+    color: white;
+}
+
+.blue a {
+    color: white;
+}
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+.blue-bold {
+    color: #0080ff;
+    font-weight: bold;
+}
+
+.black-bold {
+    font-weight: bold;
+}
+
+.Noto-Sans {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Header Page Settings */
+#header {
+    background-color: #0080ff;
+    color: white;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header a {
+    color: white;
+}
+
+#header #logo-header {
+    flex-basis: 20%;
+}
+
+#header #logo-header img {
+    margin: 0px 30px;
+    width: 140px;
+    height: auto;
+    vertical-align: middle;
+}
+
+#header #profile {
+    flex-basis: 80%;
+    text-align: right;
+}
+
+#header #profile img {
+    margin-right: 10px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+#header #profile ul {
+    padding: 0px;
+}
+
+#header #profile #profile-info {
+    margin-right: 30px;
     height: 100%;
 }
 
-#meeting {
-    margin-bottom: 20px;
-    width: 100%;
-    max-height: 100%;
-    flex-basis: 75%;
-    box-sizing: border-box;
+#header #profile-info #profile-menu {
+    display: none;
+    width: 70px;
+    height: 20px;
+
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
 }
 
-#emotion {
-    padding: 12px 48px;
+#header #profile-info:hover #profile-menu
+{
+    padding: 20px 30px;
+
+    display: block;
+    position: absolute;
+    top: 60x;
+    right: 0px;
+
+    background-color: #0080ff;
+    text-align: right;
+}
+
+#header #profile-info #profile-menu a:hover {
+    color: #ffd862;
+}
+
+#header #user-name {
+    margin: 0px;
+    display: inline;
+}
+
+#header #user-name span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Main Page Settings */
+.main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main main {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main main section {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+/* Main Menu Page Settings */
+.menu {
+    margin: 40px;
     width: 100%;
-    flex-basis: 25%;
+    height: 100%;
+
+    background-color: white;
+    text-align: center;
+    letter-spacing: -1px;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 24px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-sizing: border-box;
+    align-items: center;   
+    
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
-/* Emotion */
-#graph-arrow img {
-    width: 1.6em;
-    height: 1.6em;
+.menu:hover {
+    background-color: #F4F4F4;
 }
 
-#graph-line {
-    margin: 5px 0px;
-    width: 100%;
-    height: 8px;
-    border-radius: 10px;
-    background-color: #ffd862;
-}
-#graph-arrow ul {
-    margin: 10px 0px 5px 0px;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-}
-#emotion-image ul {
-    margin: 10px 0px 5px 0px;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-}
 
-#emotion-image img {
-    width: 1.8em;
-    height: 1.8em;
-}
-
-#emotion h3 {
-    margin: 5px 0px 5px 0px;
-    text-align: center;
-}
-/* Meeting Page Settings - Meeting */
-#meeting #root {
-    width: 100%;
-    height: 100%;
-}
-
-#meeting #container {
-    width: 100%;
-    height: 100%;
-
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-}
-
-#meeting #local {
-    border-right: lightgray 1px solid;
-    border-bottom: lightgray 1px solid;
-}
-
-#meeting .participant-3 {
-    border-left: lightgray 1px solid;
-    border-top: lightgray 1px solid;
-}
-
-#meeting .participant {
-    width: 100%;
-    height: 100%;
+.menu img {
+    width: 150px;
     max-width: 100%;
-
-    display: flex;
 }
 
-#meeting .participant div {
-    height: 100%;
+.menu h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 2.1em;
+
+    margin-bottom: 0.5em;
 }
 
-#meeting video {
+.menu h3 {
+    color: #0080ff;
+    text-decoration: underline;
+
+    margin-top: 0px;
+}
+
+#create-room:hover {
+    cursor: pointer;
+}
+
+#create-room-popup {
+    position: fixed;
     width: 100%;
     height: 100%;
+
+    display: none;
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-#meeting .label {
-    padding: 8px 10px;
-    font-size: 0.8em;
+#create-room-container {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+    width: 380px;
+    height: 180px;
+
+    background-color: #0080ff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#create-room-container header {
+    padding: 20px;
+    padding-bottom: 0px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+#create-room-container header img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+#create-room-container header img:hover {
+    cursor: pointer;
+}
+
+#create-room-container form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#create-room-container input {
+    padding: 12px;
+    width: 70%;
+
+    border: 0px;
+    outline: none;
+    border-radius: 5px;
+
+    color: #242424;
+    background-color: #99ccff;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+#create-room-container button[type=submit] {
+    padding: 8px;
+    width: 20%;
+    outline: none;
+    border: white 2px solid;
+    border-radius: 5px;
+
+    color: white;
+    background-color: #0080ff;
+    font-family: 'Nanum Gothic', sans-serif;
+
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+#create-room-container button[type=submit]:hover {
+    font-weight: bold;
+    color: #0080ff;
+    background-color: white;
+
+    cursor: pointer;
+}
+/* Emotion Settings */
+.anger {
+    background-color: #ffb2b2;
+}
+
+.happiness {
+    background-color: #ffedae;
+}
+
+.neutral {
+    background-color: #d9ead3;
+}
+
+.sadness {
+    background-color: #9fc5e8;
 }

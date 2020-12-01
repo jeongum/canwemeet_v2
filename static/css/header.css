@@ -70,3 +70,13 @@
 #header #profile-info #profile-menu a:hover {
     color: #ffd862;
 }
+
+#header #user-name {
+    margin: 0px;
+    display: inline;
+}
+
+#header #user-name span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
