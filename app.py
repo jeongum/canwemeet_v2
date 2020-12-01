@@ -18,12 +18,7 @@ from oauth2client.contrib.flask_util import UserOAuth2
 
 load_dotenv()
 
-# Configuration
-GOOGLE_CLIENT_ID = os.environ.get("646888679664-oklga1e16gl0c5fcniv49b039v7qs4ok.apps.googleusercontent.com", None)
-GOOGLE_CLIENT_SECRET = os.environ.get("HsSzEOXBr67V4OgPIDiA_GKZ", None)
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
+
 
 app = Flask(__name__)
 app.secret_key = app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
