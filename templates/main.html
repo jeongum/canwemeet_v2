@@ -5,8 +5,32 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
+    <style>
+        .minutebuttonstyle1{
+          background-color: transparent;
+          border: 0;
+          width: 500px;
+          height: 500px;
+        }
+        </style>
 {% endblock css %}
+<script>
+    function checkLoginStatus(){
+  var nameTxt = document.querySelector('#user_name');
+  var emailTxt = document.querySelector('#user_email');
+  var loginBtn = document.querySelector('#loginBtn');
 
+    var profile = gauth.currentUser.get().getBasicProfile();
+    var user_name = profile.getName();
+    var user_email = profile.getEmail();
+    nameTxt.value = user_name;
+    emailTxt.value = user_email;
+    console.log(nameTxt.value);
+    console.log(emailTxt.value);
+  
+  
+}
+    </script>
 {% block content %}
     <body class="main">
         {% include 'header.html' %}
@@ -21,11 +45,12 @@
                     </a>
                 </article>
                 <article class="menu minute-list">
-                    <form action="/minute" method="POST"  name="gominute" id="gominute">
+                    <form action="/minute" method="POST"  name="gominute1" id="gominute1">
+                        <button type="button" onclick="gotominute()" class="minutebuttonstyle1">
                         <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
                         <h1>지난 회의록 보기</h1>
-                        <input type="hidden" name="username" id="username" required>
-                        <button type="button" onclick="gotominute()">확인</button>
+                        <input type="hidden" name="name1" id="name1">
+                        </button>
                     </form>
                     
                 </article>
@@ -54,10 +79,13 @@
     </body>
     <script>
         function gotominute(){
+            var profile = gauth.currentUser.get().getBasicProfile();
             var user_name = profile.getName();
-            $('#username').val(user_name);
-            console.log(username);
-            //$("#gominute").submit();           
+            console.log(user_name);
+            name1.value = user_name;
+            //$('#username').val(user_name);
+            console.log(name1);
+            $("#gominute1").submit();           
         }
     </script>
 {% endblock scripts %}
