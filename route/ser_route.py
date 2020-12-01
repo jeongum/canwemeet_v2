@@ -66,5 +66,5 @@ def get_prediction(wav_path):
 @ser_route.route('/predict', methods=['POST'])
 def predict():
     index =  str(int(request.form['index']) + 1)
-    result = get_prediction('ser_files/wav/'+index+'.wav')
+    result = get_prediction(index)
     return result
