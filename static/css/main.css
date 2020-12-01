@@ -1,3 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
+
+
+/* Basic Settings */
+body {
+    margin: 0 auto;
+    color: #242424;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #e5f2ff;
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* Font Colors & Weight Settings */
+.blue {
+    background-color: #0080ff;
+    color: white;
+}
+
+.blue a {
+    color: white;
+}
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+.blue-bold {
+    color: #0080ff;
+    font-weight: bold;
+}
+
+.black-bold {
+    font-weight: bold;
+}
+
+.Noto-Sans {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Header Page Settings */
+#header {
+    background-color: #0080ff;
+    color: white;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header a {
+    color: white;
+}
+
+#header #logo-header {
+    flex-basis: 20%;
+}
+
+#header #logo-header img {
+    margin: 0px 30px;
+    width: 140px;
+    height: auto;
+    vertical-align: middle;
+}
+
+#header #profile {
+    flex-basis: 80%;
+    text-align: right;
+}
+
+#header #profile img {
+    margin-right: 10px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+#header #profile ul {
+    padding: 0px;
+}
+
+#header #profile #profile-info {
+    margin-right: 30px;
+    height: 100%;
+}
+
+#header #profile-info #profile-menu {
+    display: none;
+    width: 70px;
+    height: 20px;
+
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+}
+
+#header #profile-info:hover #profile-menu
+{
+    padding: 20px 30px;
+
+    display: block;
+    position: absolute;
+    top: 60x;
+    right: 0px;
+
+    background-color: #0080ff;
+    text-align: right;
+}
+
+#header #profile-info #profile-menu a:hover {
+    color: #ffd862;
+}
+
+#header #user-name {
+    margin: 0px;
+    display: inline;
+}
+
+#header #user-name span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Main Page Settings */
+.main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main main {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main main section {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
 /* Main Menu Page Settings */
 .menu {
     margin: 40px;
@@ -135,3 +292,4 @@
 
     cursor: pointer;
 }
+

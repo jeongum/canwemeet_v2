@@ -1,15 +1,9 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block css %}
-    {{ super () }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
 {% endblock css %}
 
-=======
->>>>>>> snslogin
 {% block content %}
     <body class="main">
         {% include 'header.html' %}

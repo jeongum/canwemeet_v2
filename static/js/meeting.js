@@ -135,10 +135,11 @@ function disconnect() {
 
 socket = io.connect('http://' + document.domain + ':' + location.port + '/meetingroom');
 socket.on('ready', function(){
-    SpeechtoText()
+    SpeechtoText();
+    start_meeting.disabled = true;
 });
 socket.on('end',function(){
-    socket.disconnect()
+    socket.disconnect();
     location.href='/minute';
 });
 
@@ -155,7 +156,7 @@ socket.on('receive_message',function(msg){
         new_script_chat.setAttribute('class', 'local-chat');
         new_script_chat.innerHTML = received_chat;
         new_script.appendChild(new_script_chat);
-        new_script.focus();
+
     }
     else {
         new_script.setAttribute('class', 'participant');
@@ -173,6 +174,7 @@ socket.on('receive_message',function(msg){
     }
 
     minute.appendChild(new_script);
+    minute.scrollTop = minute.scrollHeight;
 
 })
 
@@ -296,9 +298,15 @@ function set_emotion(result){
     }
     if(current_wav == 7){
         $('#minute-content').append('<article class="canny-notice"><div class="canny-chat neutral">똑똑~"이정음"님 회의에 집중하시고 계시죠? :)</div></article>');
+         document.getElementById('minute-content').scrollTop = document.getElementById('minute-content').scrollHeight;
+    }
+    if(current_wav == 10){
+        $('#minute-content').append('<article class="canny-notice"><div class="canny-chat neutral">"이정음"님이 기뻐하시니 캐니도 기뻐요 하지만 방심은 금물! :)</div></article>');
+         document.getElementById('minute-content').scrollTop = document.getElementById('minute-content').scrollHeight;
     }
     if(current_wav == 29){
         $('#minute-content').append('<article class="canny-notice"><div class="canny-chat sad">"이정음"님! 힘을 내세요, 캐니는 항상 당신 편이에요 :)</div></article>');
+        document.getElementById('minute-content').scrollTop = document.getElementById('minute-content').scrollHeight;
     }
     current_wav ++ ;
 }

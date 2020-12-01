@@ -1,3 +1,262 @@
+/* Meeting Page Settings - Minute */
+#minute {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#minute header {
+    flex-basis: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: lightgray 1px solid;
+}
+
+#minute section {
+    padding-bottom: 12px;
+    flex-basis: 80%;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    font-size: 0.9em;
+    overflow: auto;
+}
+
+#minute section::-webkit-scrollbar {
+    width: 12px;
+}
+
+#minute section::-webkit-scrollbar-thumb:hover {
+    background-color: #cbcbcb;
+}
+
+#minute section::-webkit-scrollbar-thumb {
+    background-color: #e7e7e7;
+}
+
+#minute footer {
+    flex-basis: 10%;
+    border-top: lightgray 1px solid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#meeting-title {
+    padding-left: 20px;
+    flex-basis: 50%;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+#meeting-property {
+    display: flex;
+}
+
+#participation-code, #meeting-status {
+    font-size: 0.8em;
+}
+
+#participation-code {
+    margin-right: 8px;
+    padding: 6px 8px;
+    color: #0080ff;
+    border: #0080ff 1px solid;
+}
+
+#participation-code:hover {
+    color: white;
+    background-color: #0080ff;
+    cursor: pointer;
+}
+
+#meeting-status {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#minute .participant, #minute .local, #minute .canny-notice {
+    padding: 12px 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#minute .participant {
+    padding-right: 20%;
+    align-items: flex-start;
+}
+
+#minute .local {
+    padding-left: 20%;
+    align-items: flex-end;
+}
+
+#minute .canny-notice {
+    align-items: center;
+}
+
+.participant-name {
+    width: auto;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.participant-chat, .local-chat, .canny-chat {
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.4rem;
+}
+
+.participant-chat {
+    background-color: #e7e7e7;
+}
+
+.local-chat {
+    background-color: #cbcbcb;
+}
+
+.canny-chat.neutral{
+    font-size: 0.8rem;
+    background-color: #d9ead3;
+}
+
+.canny-chat.sad{
+    font-size: 0.8rem;
+    background-color: #9fc5e8;
+}
+
+
+#minute footer form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+}
+
+#minute footer button:enabled {
+    color: gray;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#minute footer button {
+    width: 100%;
+    height: 100%;
+
+    color: lightgray;
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.9em;
+}
+
+#minute footer button:hover:enabled {
+    background-color: #e7e7e7;
+}
+
+#minute footer #start_meeting {
+    border-right: lightgray 1px solid;
+}
+
+/* Meeting Page Settings */
+.main main {
+    max-height: calc(100vh - 60px);
+}
+
+#meeting-container {
+    width: 90%;
+    height: 85%;
+}
+
+#first {
+    margin-right: 20px;
+    flex-basis: 70%;
+    height: 100%;
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#second, #meeting, #emotion {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 4px;
+}
+
+#second {
+    flex-basis: 30%;
+    height: 100%;
+}
+
+#meeting {
+    margin-bottom: 20px;
+    width: 100%;
+    max-height: 100%;
+    flex-basis: 75%;
+    box-sizing: border-box;
+}
+
+#emotion {
+    padding: 12px 48px;
+    width: 100%;
+    flex-basis: 25%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Emotion */
+#graph-arrow img {
+    width: 1.6em;
+    height: 1.6em;
+}
+
+#graph-line {
+    margin: 5px 0px;
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #ffd862;
+}
+#graph-arrow ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+#emotion-image ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#emotion-image img {
+    width: 1.8em;
+    height: 1.8em;
+}
+
+#emotion h3 {
+    margin: 5px 0px 5px 0px;
+    text-align: center;
+}
 /* Meeting Page Settings - Meeting */
 #meeting #root {
     width: 100%;
