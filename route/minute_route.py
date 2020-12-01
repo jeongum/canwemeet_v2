@@ -11,12 +11,13 @@ def minute_list():
     result = minutedb.db.engine.execute("SELECT * from meeting_participants AS mp INNER JOIN meeting_information AS mi INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_name = '윤소현'")
     return render_template('minute/list.html', result=result)
 '''
-@minute_route.route('/minute', methods=['GET','POST'])
+@minute_route.route('/minute', methods=['POST'])
 def minute_list():
     name = request.form.get('submitname')    
     print(name)
-    result = minutedb.db.engine.execute("SELECT * from meeting_participants AS mp INNER JOIN meeting_information AS mi INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_name =%s", (name))
-    return render_template('minute/list.html', result=result)
+    minutelist = minutedb.db.engine.execute("SELECT mi.room_id, mi.start_time, mi.room_title, mi.recode from meeting_participants AS mp INNER JOIN meeting_information AS mi INNER JOIN user AS us ON mp.room_id = mi.room_id AND mp.user_id = us.user_id WHERE us.user_name = %s", (name))
+    result = minutedb.db.engine.execute("SELECT user_name FROM user WHERE user_name=%s", (name))
+    return render_template('minute/list.html', result=result, minutelist=minutelist)
 
 # Testing URL
 @minute_route.route('/minute/details', methods=['GET'])

@@ -12,7 +12,7 @@
                     <img src="{{ url_for('static', filename='images/main/profile.png') }}" alt="프로필 사진">
                     {% for user in result %}
                         
-                    <p style='display:inline;'>{{user.user_name}}</p></span>
+                    <p style='display:inline;'>{{user.user_name}}님 안녕하세요!</p></span>
                     <input type="hidden" id="uname" name="uname" value={{user.user_name}}>
                     {% endfor %}
                     <ul>
