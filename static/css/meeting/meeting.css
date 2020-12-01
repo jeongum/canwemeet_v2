@@ -287,6 +287,13 @@ ul {
     background-color: #ffd862;
 }
 
+#graph-arrow ul {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
 #emotion-image ul {
     margin: 10px 0px 5px 0px;
     padding: 0px;
@@ -433,6 +440,18 @@ ul {
 
 .local-chat {
     background-color: #cbcbcb;
+}
+
+.canny-chat.neutral{
+    background-color: #d9ead3;
+}
+
+.canny-chat.sad{
+    background-color:   #9fc5e8;
+}
+
+.canny-chat.happy{
+    background-color: #ffedae;
 }
 
 #minute footer form {
