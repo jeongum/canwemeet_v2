@@ -1,25 +1,30 @@
     <div class="contents-container">
         <div id="first" class="information-column">
             <div id="title" class="information-box">
-                <h1>IT팀 회의</h1>
-                <h1 class="blue-bold Noto-Sans">2020/09/01</h1>
+            <h1>{{mi.room_title}}</h1>
+            <h1 class="blue-bold Noto-Sans">{{mi.date}}</h1>
+                    
             </div>
         
             <div id="participant-list" class="information-box">
                 <div id="participant-count">
-                    <h1 class="blue-bold Noto-Sans">4명</h1>
+                    {% for um in usernum %}
+                    <h1 class="blue-bold Noto-Sans">{{um.unum}}명</h1>
+                    {% endfor %}
                     <div>의 참여자</div>
                 </div>
         
                 <div id="participant-container">
                     <div class="participant">
+                        
                         <div class="profile-photo">
                             <img src="{{ url_for('static', filename='images/main/profile.png') }}">
                         </div>
-                        
+                    
                         <div class="participant-name">
-                            홍길동<br>
-                            (호스트)
+                        {% for u1 in name1 %}
+                            {{u1.user_name}}<br>
+                        {% endfor %}
                         </div>
                     </div>
 
@@ -29,7 +34,9 @@
                         </div>
                         
                         <div class="participant-name">
-                            홍길동
+                        {% for u2 in name2 %}
+                            {{u2.user_name}}<br>
+                        {% endfor %}
                         </div>
                     </div>
 
@@ -39,7 +46,9 @@
                         </div>
                         
                         <div class="participant-name">
-                            홍길동
+                        {% for u3 in name3 %}
+                            {{u3.user_name}}<br>
+                        {% endfor %}
                         </div>
                     </div>
 
@@ -49,7 +58,9 @@
                         </div>
                         
                         <div class="participant-name">
-                            홍길동
+                        {% for u4 in name4 %}
+                            {{u4.user_name}}<br>
+                        {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -63,21 +74,21 @@
                         회의 시간
                     </div>
                     <h1 class="blue-bold Noto-Sans">
-                        1시간 17분
+                        {{mi.ET - mi.ST}}
                     </h1>
                 </div>
         
                 <div id="start-time" class="time">
                     <h3>
                         시작
-                        <span class="blue-bold Noto-Sans">18:00</span>
+                        <span class="blue-bold Noto-Sans">{{mi.ST}}</span>
                     </h3>
                 </div>
         
                 <div id="end-time" class="time">
                     <h3>
                         종료
-                        <span class="blue-bold Noto-Sans">19:17</span>
+                        <span class="blue-bold Noto-Sans">{{mi.ET}}</span>
                     </h3>
                 </div>
             </div>
