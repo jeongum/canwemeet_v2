@@ -1,3 +1,13 @@
+<script>
+    function minuteDfunc(){
+        var profile = gauth.currentUser.get().getBasicProfile();
+        var user_name = profile.getName();
+        $('#subname').val(user_name);
+        $("#minute_detail").submit();           
+    }
+</script>
+
+
 {% extends 'base.html' %}
 
 {% block css %}
@@ -5,6 +15,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minute/list.css') }}" type="text/css">
+    <style>
+        .btnstyle{
+          background-color: transparent;
+          border: 0;
+         }
+      </style>
 {% endblock css %}
 
 {% block content %}
@@ -13,7 +29,7 @@
 
         <main>
             <section id="minute-list">
-                <p>총 <span class="blue-bold">n</span>개의 회의록이 있습니다.</p>
+                <p>총 <span class="blue-bold">7</span>개의 회의록이 있습니다.</p>
 
                 <table>
                     <thead>
@@ -24,11 +40,16 @@
                     </thead>
 
                     <tbody>
-                        {% for mi in minute %}
+                        {% for mi in minutelist %}
                         <tr>
                             <td data-label="No.">{{mi.room_id}}</td>
                             <td data-label="날짜">{{mi.start_time}}</td>
-                            <td data-label="제목"><a href="/minute/details">{{mi.room_title}}</a></td>
+                            <td data-label="제목"><form action="minute/details" id="minute_detail" name="minute_detail">
+                                <input type="hidden" id="mid" name="mid" value={{mi.room_id}}>
+                                <input type="hidden" id="subname" name="subname" value="">
+                                <button type="button" onclick="minuteDfunc();" class="btnstyle">{{mi.room_title}}</button>
+                                
+                            </form></td>
                             <td data-label="참여자">{{mi.recode}}</td>
                         </tr>
                         {% endfor %}
@@ -39,3 +60,4 @@
         </main>
     </body>
 {% endblock content %}
+

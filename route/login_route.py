@@ -29,10 +29,10 @@ def home():
                 session['logged_in'] = True
                 return render_template('main.html')
         except: # 예외입니다
-            render_template('login/login.html')
+            return render_template('login/login.html')
        
     elif session.get('logged_in'): # 로그인 세션이 있을 경우
-        render_template('main.html')
+        return render_template('main.html')
 
     else: # 로그인 세션이 없는 경우
         print("loginAuth")

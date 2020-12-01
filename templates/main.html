@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block css %}
     {{ super () }}
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
 {% endblock css %}
 
-=======
->>>>>>> snslogin
 {% block content %}
     <body class="main">
         {% include 'header.html' %}
@@ -24,10 +21,13 @@
                     </a>
                 </article>
                 <article class="menu minute-list">
-                    <a href="/minute">
+                    <form action="/minute" method="POST"  name="gominute" id="gominute">
                         <img src="{{ url_for('static', filename='images/main/icon-minute.png') }}">
                         <h1>지난 회의록 보기</h1>
-                    </a>
+                        <input type="hidden" name="username" id="username" required>
+                        <button type="button" onclick="gotominute()">확인</button>
+                    </form>
+                    
                 </article>
             </section>
         </main>
@@ -39,7 +39,7 @@
                     <img src="{{ url_for('static', filename='images/main/icon-cancel.png') }}" class="cancel">
                 </header>
 
-                <form action="/meeting" method="POST">
+                <form action="/meeting" method="POST" name="gominute" id="gominute">
                     <input type="text" name="roomname" id="roomname" placeholder="이곳에 방 제목을 입력해주세요" required> 
                     <input type="hidden" name="username" id="username" required>
                     <button type="submit" onclick="getName()">확인</button>
@@ -52,4 +52,12 @@
         {{ super() }}
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
+    <script>
+        function gotominute(){
+            var user_name = profile.getName();
+            $('#username').val(user_name);
+            console.log(username);
+            //$("#gominute").submit();           
+        }
+    </script>
 {% endblock scripts %}
