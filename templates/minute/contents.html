@@ -42,4 +42,29 @@
                 <img src="{{ url_for('static', filename='/images/minute/icon-anger.png') }}">
             </div>
         </div>
+        <table>
+            <thead>
+                
+                <th>이름</th>
+                <th>시간</th>
+                <th>내용</th>
+                <th>감정</th>
+                
+            </thead>
+
+            <tbody>
+                {% for stt in stt %}
+                <tr>
+                    <td>{{stt.user_name}}</td>
+                    <td>[{{stt.time}}]</td>
+                    <td>{{stt.content}}</td>
+                    <td>{{stt.emotion_name}}</td>
+                    
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        
+        </table>
+        
     </div>
