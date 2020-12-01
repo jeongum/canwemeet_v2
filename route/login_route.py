@@ -39,6 +39,8 @@ def home():
         loginAuth = 2
         return render_template('login/login.html')
 
+    return render_template('login/login.html')
+
 '''
 @login_route.route('/login',methods =['GET','POST'])
 def login():

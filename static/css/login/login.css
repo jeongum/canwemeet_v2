@@ -1,3 +1,66 @@
+/* Import Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@700&display=swap');
+
+
+/* Basic Settings */
+body {
+    margin: 0 auto;
+    color: #242424;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #e5f2ff;
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* Font Colors & Weight Settings */
+.blue {
+    background-color: #0080ff;
+    color: white;
+}
+
+.blue a {
+    color: white;
+}
+
+.yellow-bold {
+    color: #ffd862;
+    font-weight: bold;
+}
+
+.blue-bold {
+    color: #0080ff;
+    font-weight: bold;
+}
+
+.black-bold {
+    font-weight: bold;
+}
+
+.Noto-Sans {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body.login {
+    text-align: center;
+    height: 100vh;
+}
+
+.login main {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* Login & Register Page Settings */
 #logo img {
     width: 300px;
@@ -15,4 +78,20 @@
 
 #phrase {
     line-height: 1.5em;
+}
+
+#google button {
+    margin: 0px;
+    padding: 0px;
+
+    width: 300px;
+    border: 0px;
+    outline: none;
+
+    color: transparent;
+    background-color: transparent;
+}
+
+#google button:hover {
+    cursor: pointer;
 }
