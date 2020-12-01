@@ -79,15 +79,14 @@
 }
 
 #minute-contents-container .content {
-    width: 90%;
-
+    width: 100%;
     display: flex;
     align-items: center;
 }
 
 .text {
-    padding: 12px 0px 12px 20px;
-
+    padding: 8px 0px 8px 20px;
+    font-size: 0.9rem;
     flex-basis: 95%;
     display: flex;
 }
@@ -103,4 +102,10 @@
 .emotion-icon img {
     width: 1.2em;
     height: 1.2em;
+}
+
+#minute-only-contents-contianer{
+    width:90%;
+    max-height: 400px;
+    overflow-y: scroll;
 }

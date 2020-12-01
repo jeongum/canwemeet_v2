@@ -1,4 +1,6 @@
+
 $(document).ready(function(){
+
     // Toggle tab menu in minute-details
     $('#minute-container .tab-menu').click(function(){
       var tab_id = $(this).attr('data-tab');
@@ -49,4 +51,49 @@ $(document).ready(function(){
       background: String(my_gradient),
       "border-radius": "50%"
     });
+
+    $("#with-emotion").on("click", function(){
+      
+      if($(this).is(":checked")){
+
+        $('div.sadness-div').addClass('sadness');
+        $('div.happiness-div').addClass('happiness');
+        $('div.neutral-div').addClass('neutral');
+        $('div.anger-div').addClass('anger');
+
+        $('div.anger-div .emotion-icon').html('<img src="/static//images/minute/icon-anger.png">')
+        $('div.happiness-div .emotion-icon').html('<img src="/static//images/minute/icon-happiness.png">')
+        $('div.neutral-div .emotion-icon').html('<img src="/static//images/minute/icon-neutral.png">')
+        $('div.sadness-div .emotion-icon').html('<img src="/static//images/minute/icon-sadness.png">')
+
+      }
+
+      else{
+
+        $('div.sadness-div').removeClass('sadness');
+        $('div.happiness-div').removeClass('happiness');
+        $('div.neutral-div').removeClass('neutral');
+        $('div.anger-div').removeClass('anger');
+        
+        $('div.anger-div .emotion-icon').html('')
+        $('div.happiness-div .emotion-icon').html('')
+        $('div.neutral-div .emotion-icon').html('')
+        $('div.sadness-div .emotion-icon').html('')
+
+      }
+    });
+    $('#search').change(function(){
+      var findString = $('#search').val();
+      console.log(findString);
+      $('div.text').each(function(index, item){ 
+        var text = $(item).text();
+        if(text.indexOf(findString) != -1){
+          $(item).parent().show();
+        }
+        else{
+          $(item).parent().hide();
+        }
+      })
+    });
   })
+

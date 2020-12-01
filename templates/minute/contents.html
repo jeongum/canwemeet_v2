@@ -1,7 +1,7 @@
 <form id="minute-filter">
     <div id="filter-container">
         <div id="emotion-filter">
-            <input type="checkbox" id="with-emotion" value="" />
+            <input type="checkbox" id="with-emotion" value="" checked/>
             <label for="with-emotion">감정과 함께 보기</label>
         </div>
     
@@ -15,56 +15,51 @@
     <div id="search-bar">
         <span id="search-icon"><i class="fa fa-search"></i></span>
         <input type="text" id="search" placeholder="검색어를 입력하세요">
+        <input type="hidden" id = "stt_input" value = "{{ stt }}">
     </div>
 </form>
 
 <div id="minute-contents-container">
     {% include 'minute/emotion-navigator.html' %}
-
-    <div class="content neutral">
-        <div class="text">
-            [18:00] 회의가 시작되었습니다.
-            <img src="{{ url_for('static', filename='/images/minute/icon-highlight.png') }}" class="highlight-icon">
+    <div id = "minute-only-contents-contianer">
+    {% for stt in stt %}
+        {% if stt.emotion_name == 'default' %}
+        <div class="content neutral neutral-div">
+            <div class="text">
+                [{{stt.hour}}:0{{stt.minute}}] {{stt.user_name}} :  {{stt.content}}
+            </div>
+            <div class="emotion-icon">
+                <img src="{{ url_for('static', filename='/images/minute/icon-neutral.png') }}">
+            </div>
         </div>
-
-        <div class="emotion-icon">
-            <img src="{{ url_for('static', filename='/images/minute/icon-neutral.png') }}">
+        {% elif stt.emotion_name == 'angry' %}
+        <div class="content anger anger-div">
+            <div class="text">
+                [{{stt.hour}}:0{{stt.minute}}] {{stt.user_name}} :  {{stt.content}}
+            </div>
+            <div class="emotion-icon">
+                <img src="{{ url_for('static', filename='/images/minute/icon-anger.png') }}">
+            </div>
         </div>
+        {% elif stt.emotion_name == 'happy' %}
+        <div class="content happiness happiness-div">
+            <div class="text">
+                [{{stt.hour}}:0{{stt.minute}}] {{stt.user_name}} :  {{stt.content}}
+            </div>
+            <div class="emotion-icon">
+                <img src="{{ url_for('static', filename='/images/minute/icon-happiness.png') }}">
+            </div>
+        </div>
+        {% elif stt.emotion_name == 'sad' %}
+        <div class="content sadness sadness-div">
+            <div class="text">
+                [{{stt.hour}}:0{{stt.minute}}] {{stt.user_name}} :  {{stt.content}}
+            </div>
+            <div class="emotion-icon">
+                <img src="{{ url_for('static', filename='/images/minute/icon-sadness.png') }}">
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
     </div>
-
-    <div class="content anger">
-        <div class="text">
-            [18:00] 회의가 시작되었습니다.
-            <img src="{{ url_for('static', filename='/images/minute/icon-highlight.png') }}" class="highlight-icon">
-        </div>
-
-        <div class="emotion-icon">
-            <img src="{{ url_for('static', filename='/images/minute/icon-anger.png') }}">
-        </div>
-    </div>
-    <table>
-        <thead>
-            
-            <th>이름</th>
-            <th>시간</th>
-            <th>내용</th>
-            <th>감정</th>
-            
-        </thead>
-
-        <tbody>
-            {% for stt in stt %}
-            <tr>
-                <td>{{stt.user_name}}</td>
-                <td>[{{stt.hour}}:0{{stt.minute}}]</td>
-                <td>{{stt.content}}</td>
-                <td>{{stt.emotion_name}}</td>
-                
-            </tr>
-            {% endfor %}
-            
-        </tbody>
-    
-    </table>
-    
 </div>
