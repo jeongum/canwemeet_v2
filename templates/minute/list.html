@@ -3,6 +3,7 @@
         var profile = gauth.currentUser.get().getBasicProfile();
         var user_name = profile.getName();
         $('#subname').val(user_name);
+        console.log(mid2.value)
         $("#minute_detail").submit();           
     }
 </script>
@@ -29,7 +30,7 @@
 
         <main>
             <section id="minute-list">
-                <p>총 <span class="blue-bold">7</span>개의 회의록이 있습니다.</p>
+                <p>총 <span class="blue-bold">4</span>개의 회의록이 있습니다.</p>
 
                 <table>
                     <thead>
@@ -44,10 +45,11 @@
                         <tr>
                             <td data-label="No.">{{mi.room_id}}</td>
                             <td data-label="날짜">{{mi.start_time}}</td>
-                            <td data-label="제목"><form action="minute/details" id="minute_detail" name="minute_detail">
+                            <td data-label="제목">
+                                <form action="minute/details" id="minute_detail" name="minute_detail">
                                 <input type="hidden" id="mid" name="mid" value={{mi.room_id}}>
                                 <input type="hidden" id="subname" name="subname" value="">
-                                <button type="button" onclick="minuteDfunc();" class="btnstyle">{{mi.room_title}}</button>
+                                <button type="submit" onclick="minuteDfunc();" class="btnstyle">{{mi.room_title}}</button>
                                 
                             </form></td>
                             <td data-label="참여자">{{mi.recode}}</td>

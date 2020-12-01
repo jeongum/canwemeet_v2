@@ -115,3 +115,4 @@ class User(db.Model):
     user_name = db.Column(db.String(255,'utf8mb4_unicode_ci'), nullable=False, server_default=db.FetchedValue())
     user_email = db.Column(db.String(255,'utf8mb4_unicode_ci'), nullable=False, server_default=db.FetchedValue())
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
+
