@@ -301,7 +301,7 @@ function set_emotion(result){
          document.getElementById('minute-content').scrollTop = document.getElementById('minute-content').scrollHeight;
     }
     if(current_wav == 10){
-        $('#minute-content').append('<article class="canny-notice"><div class="canny-chat neutral">"이정음"님이 기뻐하시니 캐니도 기뻐요 하지만 방심은 금물! :)</div></article>');
+        $('#minute-content').append('<article class="canny-notice"><div class="canny-chat happy">"이정음"님이 기뻐하시니 캐니도 기뻐요 하지만 방심은 금물! :)</div></article>');
          document.getElementById('minute-content').scrollTop = document.getElementById('minute-content').scrollHeight;
     }
     if(current_wav == 29){
