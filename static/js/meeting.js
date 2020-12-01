@@ -143,6 +143,9 @@ socket.on('end',function(){
     location.href='/minute';
 });
 
+var test_i = 0;
+
+
 socket.on('receive_message',function(msg){
     let minute = document.getElementById('minute-content');
     let new_script = document.createElement('article');
@@ -151,7 +154,6 @@ socket.on('receive_message',function(msg){
 
     if(received_name == usernameInput) {
         new_script.setAttribute('class', 'local');
-
         let new_script_chat = document.createElement('div');
         new_script_chat.setAttribute('class', 'local-chat');
         new_script_chat.innerHTML = received_chat;
@@ -175,6 +177,10 @@ socket.on('receive_message',function(msg){
 
     minute.appendChild(new_script);
     minute.scrollTop = minute.scrollHeight;
+    
+    test_i ++;
+    $('#wav_index').val(test_i);
+        get_emotion();
 
 })
 
@@ -202,10 +208,10 @@ function SpeechtoText() {
         recognition.onresult = function(e) {
             for(let i = e.resultIndex, len = e.results.length; i < len; i++){
                 if(e.results[i].isFinal){
-                    $('#wav_index').val(i);
-                    get_emotion();
+                    
                     transcript = e.results[i][0].transcript;
                 }
+                
             }
             socket.emit('send_message', {
                 date:encodeURIComponent(today.toUTCString()),
@@ -225,14 +231,6 @@ connectMeetingStatusHandler();
 addLocalVideo();
 start_meeting.addEventListener('click', startMeeting);
 end_meeting.addEventListener('click', endMeeting);
-
-var test_i = 0;
-$('#ser').click(function(){
-    $('#wav_index').val(test_i);
-    test_i ++ ;
-    console.log(test_i);
-    get_emotion();
-});
 
 function get_emotion(){
     var index = $('#wav_index').val();
