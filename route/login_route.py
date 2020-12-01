@@ -11,8 +11,22 @@ login_route = Blueprint('login_route',__name__)
 def home():
     if  request.method == 'GET':
         return render_template('login/login.html')
+<<<<<<< HEAD
     else:
         name = request.form.get('user_name', False)     
+=======
+
+    return render_template('login/login.html')
+
+'''
+@login_route.route('/login',methods =['GET','POST'])
+def login():
+    global loginAuth
+    """ Session Control """
+    if  not session.get('logged_in') and loginAuth == 2: # 로그인 처리
+        name = request.form.get('user_name', False)    
+        email = request.form.get('user_email', False)   
+>>>>>>> origin/master
         try:    
             data = user.User.query.filter_by(user_name=name).first()
             print(data)

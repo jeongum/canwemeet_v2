@@ -55,6 +55,9 @@
     font-family: 'Nanum Gothic', sans-serif;
     font-weight: bold;
     color: #0080ff;
+
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
 }
 
 #memo button[type=submit]:hover, button[type=submit]:focus {

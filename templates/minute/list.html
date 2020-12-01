@@ -11,9 +11,6 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    {{ super () }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-body.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minute/list.css') }}" type="text/css">
     <style>
         .btnstyle{
