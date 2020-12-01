@@ -1,37 +1,45 @@
-    <div class="contents-container">
-        <div id="emotion-navigator-container">
-            {% include 'minute/emotion-navigator.html' %}
-        </div>
-
-        <div id="graph-container">
-            <div id="entire-emotion">
-                <div id="entire-emotion-graph">
-                </div>
-                <h3>회의 전체</h3>
-            </div>
-    
-            <div id="my-emotion">
-                <div id="my-emotion-graph">
-                </div>
-                <h3>나</h3>
-            </div>
-        </div>        
-
-        <div id="canny-container">
-            <div id="canny-advice">
-                <div id="canny-title">
-                    <img src="{{ url_for('static', filename='/images/minute/icon-canny.png') }}" id="canny-icon">
-                    <h3>캐니의 조언</h3>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in <span class="black-bold">reprehenderit(강조)</span> in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-        </div>
+<div class="contents-container">
+    <div id="emotion-navigator-container">
+        {% include 'minute/emotion-navigator.html' %}
     </div>
+
+    <div id="graph-container">
+        <div id="entire-emotion">
+            <div id="entire-emotion-graph">
+            </div>
+            <h3>회의 전체</h3>
+        </div>
+
+        <div id="my-emotion">
+            <div id="my-emotion-graph">
+            </div>
+            <h3>나</h3>
+        </div>
+    </div>        
+
+    <div id="canny-container">
+        <div id="canny-advice">
+            <div id="canny-title">
+                <img src="{{ url_for('static', filename='/images/minute/icon-canny.png') }}" id="canny-icon">
+                <h3>캐니의 조언</h3>
+            </div>
+            <p>
+               이번회의의 주 감정은 '<span class="black-bold">무감정</span>' 이군요!
+                지난 회의보다 6% 낮아진 수치입니다. 축하드려요!
+                
+            </p>
+            <p>
+                이정음님의 주 감정은 '<span class="black-bold">무감정</span>' 이셨군요!
+                 지난 회의보다 13% 높아진 수치입니다. 축하드려요!<br>
+                
+             </p>
+             <p>
+                회의가 건조하거나 지루할 땐 다같이 웃어보는건 어떨까요??
+             </p>
+             <p>
+                행복해서 웃는게 아니라 웃어서 행복한겁니다 :)
+             </p>
+        </div>
+        
+    </div>
+</div>

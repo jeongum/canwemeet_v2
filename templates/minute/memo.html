@@ -1,11 +1,7 @@
-<form>
-        
-    <form action="minute/details/memo" method="GET">   
-        <textarea></textarea>          
+ <form >   
+         
         {% for mm in memo %}
             <textarea>{{mm.content}}</textarea>
-    <input type="hidden" id="memoid" name="memoid" value="{{mm.memo_id}}">
     <button type="submit">저장</button>
     {% endfor %}
     </form>
-</form>
