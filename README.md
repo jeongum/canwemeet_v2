@@ -44,7 +44,7 @@ CAN WE MEET
  * keras
  * tensorflow
  
- #Owner
+ # Owner
  * 이정음
  * 김혜인
  * 윤소현
