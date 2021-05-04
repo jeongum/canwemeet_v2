@@ -2,15 +2,15 @@ CAN WE MEET
 =============
 딥러닝을 이용한 감정인식 화상 채팅 웹 앱
 -------------
-#Environment
-##개발환경
+# Environment
+## 개발환경
 * Web Frontend: HTML5, CSS3, JavaScript, jQeury
 * Web Backend: Python/Flask
 * Database: MySQL
 * STT(Speech-to-Text): Google Web Speech API, Socket IO
 * Meeting API: Twilio
 
-##Virtural Environment
+## Virtural Environment
 * OS: Windows 10
 * Python Version: 3.7
 * Packages
@@ -23,7 +23,7 @@ CAN WE MEET
   * Flask-SQLAlchemy
   * mysql-connector-Python
 
-##Server Environment
+## Server Environment
 * OS: Ubuntu18.06(linux)
 * SSH Client: PuTTY
 * Packages
@@ -32,7 +32,7 @@ CAN WE MEET
   * dockcer
   * tensorflow
   
-##Deep learning Environment
+## Deep learning Environment
 * Model: CNN, Convolutional Neural Network
 * Type: Tensorflow SavedModel
 * DataSet
@@ -48,4 +48,4 @@ CAN WE MEET
  * 이정음
  * 김혜인
  * 윤소현
- * 
+ * 최한나
